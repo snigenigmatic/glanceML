@@ -1,40 +1,94 @@
 {
-  "_notes": "Hand-labeled relevance for the five assignment judge queries. IMPORTANT: image IDs below are for the Fashionpedia subset. After switching to --source mixed (CUHK-PEDES+COCO), re-label against the new corpus before trusting P/R numbers. relevant = acceptable top results; hard_negatives = near-misses that should rank below true matches.",
+  "_notes": "Hand-labeled relevance for the five assignment judge queries against the mixed CUHK-PEDES + COCO corpus (image IDs like pedes_* / coco_*). relevant = acceptable top results; hard_negatives = near-misses that should rank below true matches.",
   "queries": [
     {
       "id": "q1_attribute",
       "query": "A person in a bright yellow raincoat.",
-      "relevant": ["404", "6935", "189", "7943"],
-      "hard_negatives": ["898", "4177"],
-      "label_notes": "No literal bright-yellow raincoat in corpus. Relevant = bright yellow / yellow-green outerwear (coat/jacket). Hard negatives = raincoats that are blue or green (right garment family, wrong color)."
+      "relevant": [
+        "pedes_000036",
+        "pedes_000044",
+        "pedes_000054",
+        "pedes_000059",
+        "pedes_000062",
+        "coco_3272"
+      ],
+      "hard_negatives": [
+        "coco_569",
+        "coco_1006",
+        "pedes_001026"
+      ],
+      "label_notes": "No literal yellow raincoat in corpus. Relevant = bright/neon yellow outerwear (hi-vis vest/coat family) as the closest color+outerwear matches. Hard negatives = non-yellow coat (coco_569 white coat), yellow accents that are not outerwear (coco_1006 yellow sneakers; pedes_001026 yellow logo on black tee)."
     },
     {
       "id": "q2_contextual",
       "query": "Professional business attire inside a modern office.",
-      "relevant": ["724", "706", "999", "984", "1204", "973", "648", "655"],
-      "hard_negatives": ["13189", "909", "3661"],
-      "label_notes": "Corpus has almost no true office interiors; relevant = formal/business suit+tie attire (event/street/runway proxies including 648/655). Hard negatives = casual street/hoodie looks."
+      "relevant": [
+        "coco_3008",
+        "coco_3382",
+        "coco_6031",
+        "coco_7424",
+        "coco_1756",
+        "pedes_001287",
+        "pedes_001289",
+        "pedes_001290"
+      ],
+      "hard_negatives": [
+        "coco_9656",
+        "coco_13985",
+        "pedes_001026"
+      ],
+      "label_notes": "Relevant = office/conference desk scenes with professional cues, or clear suit+tie business attire. Hard negatives = laptop/office with hoodie or casual plaid, and casual street hoodie/jeans."
     },
     {
       "id": "q3_complex",
       "query": "Someone wearing a blue shirt sitting on a park bench.",
-      "relevant": ["3482", "665"],
-      "hard_negatives": ["5398", "192", "909"],
-      "label_notes": "3482: blue t-shirt in park. 665: blue blouse in park. Hard negatives: park/bench without blue shirt, or blue shirt on city street."
+      "relevant": [
+        "coco_839",
+        "coco_322",
+        "pedes_000367",
+        "pedes_000368",
+        "coco_510"
+      ],
+      "hard_negatives": [
+        "coco_1667",
+        "coco_2142",
+        "coco_2400"
+      ],
+      "label_notes": "Relevant = blue shirt/tee/polo in a park (or blue outer layer on a park bench for coco_510). Hard negatives = park/bench without a blue shirt (pink tee, black jacket, gray tee)."
     },
     {
       "id": "q4_style",
       "query": "Casual weekend outfit for a city walk.",
-      "relevant": ["909", "2098", "8792", "3661", "13189"],
-      "hard_negatives": ["724", "1204", "901"],
-      "label_notes": "Relevant = casual street / jeans / hoodie / city walk looks. Hard negatives = formal suit+tie."
+      "relevant": [
+        "pedes_001026",
+        "pedes_000150",
+        "pedes_000102",
+        "pedes_001272",
+        "pedes_000013",
+        "pedes_000434",
+        "pedes_000779"
+      ],
+      "hard_negatives": [
+        "pedes_001287",
+        "pedes_001290",
+        "pedes_001006"
+      ],
+      "label_notes": "Relevant = casual street / jeans / hoodie / sneakers city-walk looks. Hard negatives = formal suit+tie."
     },
     {
       "id": "q5_compositional",
       "query": "A red tie and a white shirt in a formal setting.",
-      "relevant": ["1204", "901"],
-      "hard_negatives": ["724", "1081", "973", "706"],
-      "label_notes": "Relevant requires BOTH white shirt AND red/maroon tie. Hard negatives = white shirt with black/non-red tie (compositional swap / missing red binding)."
+      "relevant": [
+        "coco_3008"
+      ],
+      "hard_negatives": [
+        "pedes_001287",
+        "pedes_001290",
+        "pedes_001289",
+        "coco_13639",
+        "coco_12797"
+      ],
+      "label_notes": "Relevant requires BOTH white shirt/blouse AND red/maroon-family tie (coco_3008: white blouse + red/white striped tie in office). Hard negatives = white shirt with black/blue tie, or maroon tie with non-white shirt (compositional swaps)."
     }
   ]
 }
