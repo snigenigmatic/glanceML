@@ -1,0 +1,21 @@
+# Local / CI dependencies (Modal installs its own image pins in modal_app.py)
+torch>=2.2.0
+torchvision>=0.17.0
+transformers>=4.45.0
+accelerate>=0.34.0
+timm>=1.0.0
+einops>=0.8.0
+open_clip_torch>=2.26.0
+chromadb>=0.5.5
+datasets>=3.0.0
+pillow>=10.0.0
+pyyaml>=6.0
+tqdm>=4.66.0
+gradio==4.44.1
+pydantic==2.10.6
+fastapi==0.115.6
+numpy>=1.26.0
+sentencepiece>=0.2.0
+protobuf>=4.25.0
+modal>=0.64.0
+pytest>=8.0.0

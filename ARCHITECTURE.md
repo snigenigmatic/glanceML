@@ -1,36 +1,34 @@
-# ARCHITECTURE.md
-
 # System Overview
 
 ## Design Goals
 
-1. Beat vanilla CLIP.
-2. Support compositional fashion queries.
-3. Keep the architecture modular.
-4. Scale to larger datasets.
+1. Beat vanilla CLIP on compositional fashion queries.
+2. Keep logic modular (models ≠ index ≠ retrieval).
+3. Scale retrieval to larger corpora via ANN-first design.
+4. Run end-to-end on Modal (GPU index + Gradio demo).
 
 ## Pipeline
 
 ```text
-Images
+Images (Fashionpedia subset)
    │
    ├── FashionSigLIP → Embeddings
-   ├── Florence-2 → Structured metadata
+   ├── Florence-2 → Caption / detections → structured metadata
    │
    ▼
-ChromaDB
+ChromaDB (cosine HNSW + metadata)
    │
 Natural Language Query
    │
-Query Parsing
+Deterministic attribute parse
    │
-Dense Retrieval
+Dense Retrieval (top-50)
    │
 Metadata Scoring
    │
-Weighted Fusion
+Weighted Fusion (0.7 dense + 0.3 metadata)
    │
-Optional Reranking
+Composition Rerank (top-20)
    │
 Top-K Images
 ```
@@ -38,35 +36,33 @@ Top-K Images
 ## Components
 
 ### FashionSigLIP
-Primary embedding model for semantic retrieval.
+Primary embedding model for semantic fashion retrieval (`Marqo/marqo-fashionSigLIP`).
 
 ### Florence-2
-Extracts:
-- Scene
-- Clothing
-- Color
-- Style
-- Caption
+Offline VLM metadata: scene, clothing, color, style, caption.
 
 ### ChromaDB
-Stores embeddings and metadata.
+Stores embeddings and scalar metadata. Convenient for this scale; replaceable.
 
-### Retrieval
+### Retrieval score
 
-Final Score =
-- 70% semantic similarity
-- 30% metadata match
+```text
+final = 0.7 * dense_similarity + 0.3 * metadata_overlap + composition_bonus
+```
+
+### Modal surface (`modal_app.py`)
+
+| Function | Role |
+| --- | --- |
+| `prepare_dataset` | Sample Fashionpedia → `/data` volume |
+| `build_index` | Part A indexer (GPU) |
+| `query` | Part B retriever |
+| `evaluate` | Ablations on official prompts |
+| `demo` | Gradio ASGI app |
 
 ### Scalability
 
 For 1M images:
 - Replace Chroma with Qdrant or FAISS IVF/HNSW.
-- Batch embedding generation.
-- Rerank only top candidates.
-
-## Future Improvements
-
-- Personalization
-- Weather-aware retrieval
-- Hard-negative mining
-- Multi-person reasoning
+- Batch / shard embedding + VLM jobs.
+- Keep rerank only on the top candidate pool.

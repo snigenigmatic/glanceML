@@ -1,0 +1,37 @@
+# Default configuration for multimodal fashion retrieval
+
+dataset:
+  # Sources: fashionpedia | cuhk_pedes | mixed (PEDES attributes + COCO scenes)
+  name: mixed
+  target_size: 800
+  pedes_n: 500
+  coco_n: 300
+  image_size: 512
+  seed: 42
+  hf_dataset: detection-datasets/fashionpedia
+  hf_split: train
+  output_dir: data
+
+models:
+  embedding: Marqo/marqo-fashionSigLIP
+  baseline_clip: openai/clip-vit-base-patch32
+  vlm: microsoft/Florence-2-base
+  device: cuda
+
+index:
+  collection_name: fashion_retrieval
+  chroma_dir: data/chroma
+  batch_size: 16
+
+retrieval:
+  top_k: 5
+  candidate_pool: 50
+  dense_weight: 0.7
+  metadata_weight: 0.3
+  rerank: true
+  rerank_pool: 20
+
+eval:
+  queries_path: configs/eval_queries.json
+  relevance_labels_path: configs/relevance_labels.json
+  output_dir: eval/results

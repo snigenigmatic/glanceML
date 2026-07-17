@@ -1,0 +1,34 @@
+{
+  "dataset": "mixed-cuhk_pedes-coco",
+  "count": 800,
+  "sources": {
+    "cuhk_pedes": 500,
+    "coco": 300
+  },
+  "vlm_color_primary_histogram": {
+    "white": 175,
+    "red": 65,
+    "black": 220,
+    "blue": 128,
+    "silver": 7,
+    "brown": 6,
+    "gray": 71,
+    "orange": 9,
+    "yellow": 32,
+    "pink": 12,
+    "beige": 12,
+    "green": 31,
+    "purple": 10,
+    "unknown": 22
+  },
+  "clothing_len_histogram": {
+    "0": 138,
+    "1": 49,
+    "2": 125,
+    "3": 220,
+    "4": 215,
+    "5": 48,
+    "6": 5
+  },
+  "note": "Mixed CUHK-PEDES + COCO; colors from Florence caption reparse."
+}
