@@ -1,30 +1,30 @@
 {
   "dataset": "fashionpedia-subset",
   "count": 800,
-  "image_size": 512,
-  "clothing_histogram": {
-    "blouse": 73,
-    "skirt": 66,
-    "pants": 73,
-    "coat": 73,
-    "unknown": 37,
-    "cardigan": 72,
-    "scarf": 47,
-    "t-shirt": 72,
-    "hat": 10,
-    "dress": 72,
-    "shorts": 61,
-    "jacket": 72,
-    "sweater": 72
+  "vlm_color_primary_histogram": {
+    "white": 209,
+    "beige": 49,
+    "blue": 69,
+    "red": 37,
+    "black": 235,
+    "gold": 4,
+    "orange": 26,
+    "gray": 55,
+    "brown": 24,
+    "purple": 16,
+    "pink": 25,
+    "yellow": 18,
+    "green": 23,
+    "silver": 8,
+    "unknown": 2
   },
-  "color_histogram": {
-    "unknown": 800
+  "clothing_len_histogram": {
+    "1": 49,
+    "2": 163,
+    "3": 232,
+    "4": 161,
+    "5": 91,
+    "6": 104
   },
-  "scene_histogram": {
-    "office": 219,
-    "street": 201,
-    "urban": 43,
-    "home": 156,
-    "park": 181
-  }
+  "note": "Colors from caption reparse (not seed Fashionpedia attribute ids)."
 }

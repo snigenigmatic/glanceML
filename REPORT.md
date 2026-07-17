@@ -68,6 +68,21 @@ Compared systems:
 
 Attribute Coverage@K is a **diagnostic only** (self-grading against system metadata). Do not use it as the main claim.
 
+### Measured results (800-image subset, hand labels)
+
+| System | P@1 | P@5 | R@5 | AP@5 |
+| --- | --- | --- | --- | --- |
+| CLIP baseline | 0.00 | 0.16 | 0.28 | 0.10 |
+| FashionSigLIP dense-only | 0.00 | 0.16 | 0.34 | 0.14 |
+| Hybrid | **0.60** | **0.28** | **0.43** | 0.41 |
+| Hybrid + rerank | **0.60** | **0.28** | **0.43** | **0.43** |
+
+Takeaways:
+- Hybrid clearly beats vanilla CLIP on Precision@1 / AP@5 — this is the assignment claim.
+- Compositional query q5 ranks a true red-tie+white-shirt match above black-tie hard negatives.
+- q1 (bright yellow raincoat) remains hard: the corpus has few literal yellow raincoats; dense/hybrid still under-recall there.
+- Rerank helps AP slightly; it does not invent relevance the dense stage never retrieved.
+
 ## 4. Scalability to 1M images
 
 | Stage | 800 imgs | 1M imgs |

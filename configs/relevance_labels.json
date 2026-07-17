@@ -11,9 +11,9 @@
     {
       "id": "q2_contextual",
       "query": "Professional business attire inside a modern office.",
-      "relevant": ["724", "706", "999", "984", "1204", "973"],
-      "hard_negatives": ["13189", "909"],
-      "label_notes": "Corpus has almost no true office interiors; relevant = formal/business suit attire (event/runway proxies). Hard negatives = casual street/hoodie looks."
+      "relevant": ["724", "706", "999", "984", "1204", "973", "648", "655"],
+      "hard_negatives": ["13189", "909", "3661"],
+      "label_notes": "Corpus has almost no true office interiors; relevant = formal/business suit+tie attire (event/street/runway proxies including 648/655). Hard negatives = casual street/hoodie looks."
     },
     {
       "id": "q3_complex",

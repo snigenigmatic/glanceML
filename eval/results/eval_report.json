@@ -1,65 +1,682 @@
 {
-  "queries": [],
+  "metric_notes": {
+    "primary": "Precision@K / Recall@K / AP@K against hand-labeled relevance_labels.json",
+    "diagnostic": "coverage@K is self-grading (system metadata vs query parse) — not used for claims",
+    "labels": "/root/configs/relevance_labels.json"
+  },
   "summary": {
+    "clip_baseline": {
+      "mean_precision@1": 0.0,
+      "mean_precision@5": 0.16,
+      "mean_recall@5": 0.275,
+      "mean_ap@5": 0.10333333333333332,
+      "q5_relevant_before_hard_neg": true
+    },
     "dense_only": {
-      "mean_coverage@1": 0.875,
-      "mean_coverage@5": 0.7883333333333333
+      "mean_precision@1": 0.0,
+      "mean_precision@5": 0.16,
+      "mean_recall@5": 0.33999999999999997,
+      "mean_ap@5": 0.14333333333333334,
+      "q5_relevant_before_hard_neg": true
     },
     "hybrid": {
-      "mean_coverage@1": 1.0,
-      "mean_coverage@5": 0.9949999999999999
+      "mean_precision@1": 0.6,
+      "mean_precision@5": 0.28,
+      "mean_recall@5": 0.43,
+      "mean_ap@5": 0.4133333333333333,
+      "q5_relevant_before_hard_neg": true
     },
     "hybrid_rerank": {
-      "mean_coverage@1": 1.0,
-      "mean_coverage@5": 0.9949999999999999
+      "mean_precision@1": 0.6,
+      "mean_precision@5": 0.28,
+      "mean_recall@5": 0.43,
+      "mean_ap@5": 0.42666666666666664,
+      "q5_relevant_before_hard_neg": true
     }
+  },
+  "clip_baseline": {
+    "per_query": [
+      {
+        "id": "q1_attribute",
+        "query": "A person in a bright yellow raincoat.",
+        "relevant": [
+          "189",
+          "404",
+          "6935",
+          "7943"
+        ],
+        "hard_negatives": [
+          "4177",
+          "898"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.2,
+        "recall@5": 0.25,
+        "ap@5": 0.125,
+        "diagnostic_coverage@5": 0.0,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 2,
+          "first_hard_negative_rank": 4,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "4706",
+            "404",
+            "2007",
+            "898",
+            "2550",
+            "8566",
+            "2901",
+            "4653",
+            "296",
+            "10359"
+          ]
+        },
+        "top_results": [
+          {
+            "image_id": "4706",
+            "path": "images/4706.jpg",
+            "score": 0.2868614196777344,
+            "dense_score": 0.2868614196777344,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young man standing on a sidewalk in front of a brick wall. He is wearing a green jacket, yellow pants, and black sneakers. He has a pair of glasses on and is holding a mobile phone to his ear. On the right side of the image, there is a white door with a red sign that reads \"Emergency Exit\". On the left side, there are two yellow bollards. The man appears to be deep in thought.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 1
+          },
+          {
+            "image_id": "404",
+            "path": "images/404.jpg",
+            "score": 0.28259098529815674,
+            "dense_score": 0.28259098529815674,
+            "metadata_score": 0.0,
+            "caption": "The image is a portrait of a young woman standing on a wooden bridge. She is wearing a yellow and black checkered coat with a white blouse underneath. The coat has a high collar and long sleeves. She has blonde hair and is looking off to the side with a serious expression on her face. The background is blurred, but it appears to be a wooded area with trees and bushes. The overall mood of the image is casual and relaxed.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 2
+          },
+          {
+            "image_id": "2007",
+            "path": "images/2007.jpg",
+            "score": 0.27496638894081116,
+            "dense_score": 0.27496638894081116,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman walking on a busy street. She is wearing a blue coat with a leopard print pattern and a yellow scarf around her neck. She has a blue bag slung over her shoulder and is holding a white phone in her hand. The street is lined with orange traffic cones and there are cars parked on the side of the road. The buildings on both sides of the street have shops and banners hanging from them. The woman appears to be deep in thought as she walks.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 3
+          },
+          {
+            "image_id": "898",
+            "path": "images/898.jpg",
+            "score": 0.2746233344078064,
+            "dense_score": 0.2746233344078064,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman standing on a brick pavement in front of a white wall. She is wearing a bright blue raincoat, black tights, and blue patterned boots. She has a gray scarf around her neck and is holding a clear umbrella in her left hand. The woman has shoulder-length dark hair and is looking off to the side with a serious expression on her face.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 4
+          },
+          {
+            "image_id": "2550",
+            "path": "images/2550.jpg",
+            "score": 0.27010586857795715,
+            "dense_score": 0.27010586857795715,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman standing on a street in a city. She is wearing a gray coat with a yellow scarf around her neck and black tights. She has shoulder-length dark hair and is wearing black boots. The street is lined with tall buildings on both sides and there are cars parked on the side. The sky is overcast and the ground is wet, suggesting that it has recently rained. The woman is looking off to the side with a serious expression on her face.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 5
+          }
+        ]
+      },
+      {
+        "id": "q2_contextual",
+        "query": "Professional business attire inside a modern office.",
+        "relevant": [
+          "1204",
+          "648",
+          "655",
+          "706",
+          "724",
+          "973",
+          "984",
+          "999"
+        ],
+        "hard_negatives": [
+          "13189",
+          "3661",
+          "909"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.2,
+        "recall@5": 0.125,
+        "ap@5": 0.1,
+        "diagnostic_coverage@5": 0.0,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 2,
+          "first_hard_negative_rank": null,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "652",
+            "655",
+            "1529",
+            "1081",
+            "8424",
+            "2567",
+            "199",
+            "4094",
+            "3774",
+            "5927"
+          ]
+        },
+        "top_results": [
+          {
+            "image_id": "652",
+            "path": "images/652.jpg",
+            "score": 0.2681458592414856,
+            "dense_score": 0.2681458592414856,
+            "metadata_score": 0.0,
+            "caption": "The image shows a man walking up a set of stairs in a modern building. The stairs are made of black marble and have a curved design on either side. The man is wearing a black jacket, jeans, and a baseball cap. He is walking towards the top of the stairs with his back to the camera. The walls of the building are white and there are round lights hanging from the ceiling. The overall atmosphere of the image is sleek and contemporary.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 1
+          },
+          {
+            "image_id": "655",
+            "path": "images/655.jpg",
+            "score": 0.2600387632846832,
+            "dense_score": 0.2600387632846832,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young man in a black suit and tie standing behind a glass display case in a store. He is holding a small bottle of perfume in his right hand and appears to be looking at the camera with a serious expression. The display case is made of clear glass and has several small bottles of perfume arranged neatly on it. The man is standing in front of a mirror and there are other mannequins in the background. The store has a modern and elegant design with white walls and a high ceiling.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 2
+          },
+          {
+            "image_id": "1529",
+            "path": "images/1529.jpg",
+            "score": 0.25847434997558594,
+            "dense_score": 0.25847434997558594,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman standing in a room with a modern design. She is wearing a gray sweater, a black skirt, and black tights. She has long blonde hair and is holding a mobile phone in her hand. On the left side of the image, there is a white kiosk with a black stand and a pair of headphones on it. The kiosk appears to be in a conference room with beige walls and a carpeted floor.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 3
+          },
+          {
+            "image_id": "1081",
+            "path": "images/1081.jpg",
+            "score": 0.2569907605648041,
+            "dense_score": 0.2569907605648041,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young man walking down a runway. He is wearing a black tuxedo with a white shirt and a black bow tie. He has a serious expression on his face and is looking directly at the camera. The runway is black and there are people sitting on either side of the runway, watching the man. The background is a plain white wall.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 4
+          },
+          {
+            "image_id": "8424",
+            "path": "images/8424.jpg",
+            "score": 0.25530460476875305,
+            "dense_score": 0.25530460476875305,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman walking on a brick pathway in a park. She is wearing a beige trench coat with black polka dots and black tights. She has a black beanie on her head and is carrying a brown handbag. The pathway is lined with trees and there are a few people walking in the background. The sky is overcast and the overall mood of the image is casual and relaxed.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 5
+          }
+        ]
+      },
+      {
+        "id": "q3_complex",
+        "query": "Someone wearing a blue shirt sitting on a park bench.",
+        "relevant": [
+          "3482",
+          "665"
+        ],
+        "hard_negatives": [
+          "192",
+          "5398",
+          "909"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.2,
+        "recall@5": 0.5,
+        "ap@5": 0.125,
+        "diagnostic_coverage@5": 0.0,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 4,
+          "first_hard_negative_rank": null,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "1332",
+            "3497",
+            "3818",
+            "3482",
+            "3472",
+            "862",
+            "3289",
+            "4165",
+            "4049",
+            "665"
+          ]
+        },
+        "top_results": [
+          {
+            "image_id": "1332",
+            "path": "images/1332.jpg",
+            "score": 0.2807586193084717,
+            "dense_score": 0.2807586193084717,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman sitting on a blue wicker sofa against a yellow brick wall. She is wearing a red and blue patterned top, blue jeans, and red sneakers. She has long brown hair and is wearing glasses. Her arms are crossed over her chest and she is looking off to the side with a serious expression on her face. There are two throw pillows on the sofa, one with a geometric pattern and the other with a zigzag pattern. The floor is made of red bricks.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 1
+          },
+          {
+            "image_id": "3497",
+            "path": "images/3497.jpg",
+            "score": 0.277962327003479,
+            "dense_score": 0.277962327003479,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman sitting on the edge of a stone wall next to a body of water. She is wearing a light blue dress and white sneakers. Her long dark hair is styled in loose waves and she is looking off to the side with a serious expression on her face. The water is calm and there are trees in the background. The overall mood of the image is peaceful and serene.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 2
+          },
+          {
+            "image_id": "3818",
+            "path": "images/3818.jpg",
+            "score": 0.2761741578578949,
+            "dense_score": 0.2761741578578949,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman sitting on a paved path in a park. She is wearing a denim tank top, denim shorts, and white sneakers. Her long brown hair is styled in loose waves and she is looking off to the side with a thoughtful expression on her face. The path is lined with trees on both sides and the ground is covered in fallen leaves. The sky is blue and the overall mood of the image is peaceful and serene.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 3
+          },
+          {
+            "image_id": "3482",
+            "path": "images/3482.jpg",
+            "score": 0.27456727623939514,
+            "dense_score": 0.27456727623939514,
+            "metadata_score": 0.0,
+            "caption": "The image is a portrait of a young woman sitting on the ground in a park. She is wearing a blue t-shirt with a graphic design on it, black leggings, and black sneakers. She has long dark hair and is smiling at the camera. Her hands are resting on her head and she appears to be deep in thought. The background is filled with trees and greenery, and there is a stone wall on the right side of the image. The overall mood of the photo is peaceful and serene.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 4
+          },
+          {
+            "image_id": "3472",
+            "path": "images/3472.jpg",
+            "score": 0.27420395612716675,
+            "dense_score": 0.27420395612716675,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman sitting on a grassy lawn in a park. She is wearing a green cardigan, a white blouse, black tights, and yellow flats. She has a red handbag on her lap and is looking directly at the camera with a slight smile on her face. In the background, there are other people sitting and lying on the grass, some of them are sitting on benches and others are standing. There are trees and parked cars visible in the distance. The sky is blue and the weather appears to be sunny and pleasant.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 5
+          }
+        ]
+      },
+      {
+        "id": "q4_style",
+        "query": "Casual weekend outfit for a city walk.",
+        "relevant": [
+          "13189",
+          "2098",
+          "3661",
+          "8792",
+          "909"
+        ],
+        "hard_negatives": [
+          "1204",
+          "724",
+          "901"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "ap@5": 0.0,
+        "diagnostic_coverage@5": 0.0,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 9,
+          "first_hard_negative_rank": null,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "5966",
+            "240",
+            "2567",
+            "16145",
+            "5271",
+            "7725",
+            "149",
+            "1452",
+            "2098",
+            "130"
+          ]
+        },
+        "top_results": [
+          {
+            "image_id": "5966",
+            "path": "images/5966.jpg",
+            "score": 0.2754119336605072,
+            "dense_score": 0.2754119336605072,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman walking on a street. She is wearing a white blouse, black trousers, and white slip-on sneakers. She has a beige crossbody bag slung over her shoulder and is wearing sunglasses. Her long dark hair is styled in loose waves and she is looking off to the side with a serious expression on her face. In the background, there is a white fence and a building. The sky is blue and the weather appears to be sunny.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 1
+          },
+          {
+            "image_id": "240",
+            "path": "images/240.jpg",
+            "score": 0.2742002308368683,
+            "dense_score": 0.2742002308368683,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman standing on a pathway in a park or garden. She is wearing a white off-the-shoulder top with ruffled sleeves and black flared trousers. She has a silver clutch in her hand and is wearing black strappy heels. Her long dark hair is styled in loose waves and she is wearing sunglasses. The pathway is lined with trees and there is a bench on the left side of the image. The background is blurred, but it appears to be a sunny day.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 2
+          },
+          {
+            "image_id": "2567",
+            "path": "images/2567.jpg",
+            "score": 0.2733641564846039,
+            "dense_score": 0.2733641564846039,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman standing in a park with trees in the background. She is wearing a pink blouse with a ruffled neckline and black trousers. She has long dark hair styled in loose waves and is wearing large sunglasses. The woman is holding a small black clutch in her left hand and is posing with her right hand on her hip. She appears to be confident and fashionable.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 3
+          },
+          {
+            "image_id": "16145",
+            "path": "images/16145.jpg",
+            "score": 0.27306151390075684,
+            "dense_score": 0.27306151390075684,
+            "metadata_score": 0.0,
+            "caption": "The image shows a man standing on a stone pedestal with his legs slightly apart. He is wearing a pair of white shorts with black stripes on the sides and white sneakers. The shorts appear to be made of a lightweight fabric and have a relaxed fit. The man is standing with his hands on his hips and his feet slightly apart, as if he is posing for a photo. The background is blurred, but it appears to be an outdoor setting with trees and a building visible.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 4
+          },
+          {
+            "image_id": "5271",
+            "path": "images/5271.jpg",
+            "score": 0.2730361819267273,
+            "dense_score": 0.2730361819267273,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young woman standing on a brick sidewalk in front of a white brick wall. She is wearing a white sleeveless top with a tie waist and dark blue culottes. She has a brown crossbody bag slung over her shoulder and is wearing white slip-on sneakers. Her hair is styled in loose waves and she is wearing sunglasses. She appears to be walking confidently and is looking off to the side.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 5
+          }
+        ]
+      },
+      {
+        "id": "q5_compositional",
+        "query": "A red tie and a white shirt in a formal setting.",
+        "relevant": [
+          "1204",
+          "901"
+        ],
+        "hard_negatives": [
+          "1081",
+          "706",
+          "724",
+          "973"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.2,
+        "recall@5": 0.5,
+        "ap@5": 0.16666666666666666,
+        "diagnostic_coverage@5": 0.0,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 3,
+          "first_hard_negative_rank": 4,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "984",
+            "648",
+            "1204",
+            "724",
+            "1081",
+            "655",
+            "1224",
+            "1133",
+            "1410",
+            "1174"
+          ]
+        },
+        "top_results": [
+          {
+            "image_id": "984",
+            "path": "images/984.jpg",
+            "score": 0.27069950103759766,
+            "dense_score": 0.27069950103759766,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young man walking down a runway. He is wearing a white suit with a blue tie and white shoes. The suit has a single-breasted design with a notched lapel. The man has short blonde hair and is looking off to the side with a serious expression on his face. On either side of the runway, there are rows of people sitting in chairs, watching the man. The background is dark, making the man and his outfit stand out.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 1
+          },
+          {
+            "image_id": "648",
+            "path": "images/648.jpg",
+            "score": 0.25217095017433167,
+            "dense_score": 0.25217095017433167,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young man standing on a stone staircase in front of a white building with a large window. He is wearing a grey suit with a blue tie, black trousers, and brown shoes. He has a black pocket square on his lapel and is holding a small white purse in his left hand. His hair is styled in a short, neat cut and he is looking off to the side with a serious expression on his face.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 2
+          },
+          {
+            "image_id": "1204",
+            "path": "images/1204.jpg",
+            "score": 0.24265240132808685,
+            "dense_score": 0.24265240132808685,
+            "metadata_score": 0.0,
+            "caption": "The image shows a man standing on a red carpet at an event. He is wearing a navy blue suit with a white shirt and a maroon tie. He has short dark hair and is smiling at the camera. Behind him, there is a white backdrop with the words \"InStyle\" and \"Nespresso\" written in black. The man is also wearing black shoes.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 3
+          },
+          {
+            "image_id": "724",
+            "path": "images/724.jpg",
+            "score": 0.2407723367214203,
+            "dense_score": 0.2407723367214203,
+            "metadata_score": 0.0,
+            "caption": "The image shows a man standing on a red carpet at an event. He is wearing a black suit with a white shirt, black tie, and black shoes. He has a white pocket square on his lapel and is bald. The background is black with the words \"Grace Monaco\" and the logo of the event. The man is posing with his hands in his pockets and is looking directly at the camera with a serious expression.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 4
+          },
+          {
+            "image_id": "1081",
+            "path": "images/1081.jpg",
+            "score": 0.23913374543190002,
+            "dense_score": 0.23913374543190002,
+            "metadata_score": 0.0,
+            "caption": "The image shows a young man walking down a runway. He is wearing a black tuxedo with a white shirt and a black bow tie. He has a serious expression on his face and is looking directly at the camera. The runway is black and there are people sitting on either side of the runway, watching the man. The background is a plain white wall.",
+            "matched_attributes": {
+              "colors": [],
+              "clothing": [],
+              "scenes": [],
+              "styles": []
+            },
+            "rank": 5
+          }
+        ]
+      }
+    ],
+    "mean_precision@1": 0.0,
+    "mean_precision@5": 0.16,
+    "mean_recall@5": 0.275,
+    "mean_ap@5": 0.10333333333333332,
+    "q5_relevant_before_hard_neg": true
   },
   "dense_only": {
     "per_query": [
       {
         "id": "q1_attribute",
         "query": "A person in a bright yellow raincoat.",
-        "coverage@1": 1.0,
-        "coverage@5": 0.7,
+        "relevant": [
+          "189",
+          "404",
+          "6935",
+          "7943"
+        ],
+        "hard_negatives": [
+          "4177",
+          "898"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "ap@5": 0.0,
+        "diagnostic_coverage@5": 0.4,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 9,
+          "first_hard_negative_rank": null,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "8792",
+            "8273",
+            "4706",
+            "1429",
+            "8033",
+            "4185",
+            "2007",
+            "6874",
+            "404",
+            "1044"
+          ]
+        },
         "top_results": [
           {
             "image_id": "8792",
             "path": "images/8792.jpg",
             "score": 0.0763358473777771,
             "dense_score": 0.0763358473777771,
-            "metadata_score": 1.0,
+            "metadata_score": 0.3333333333333333,
             "caption": "The image shows a young woman walking on a busy street in New York City. She is wearing a black coat, black pants, and brown boots. She has blonde hair and is carrying a brown bag. In the background, there is a yellow taxi cab parked on the side of the street. The street is lined with orange traffic cones and there are other people walking on the sidewalk. On the right side, there are buildings with shops and businesses. The sky is overcast and the overall mood of the image is busy and bustling.",
             "matched_attributes": {
               "colors": [
-                "yellow",
-                "orange",
                 "black",
-                "brown"
+                "brown",
+                "yellow",
+                "orange"
               ],
               "clothing": [
                 "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
                 "pants",
                 "boots",
-                "suit",
-                "tie",
                 "scarf"
               ],
               "scenes": [
                 "street"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
@@ -68,40 +685,25 @@
             "path": "images/8273.jpg",
             "score": 0.07589077949523926,
             "dense_score": 0.07589077949523926,
-            "metadata_score": 0.5,
+            "metadata_score": 0.0,
             "caption": "The image shows a person walking on a cobblestone street in an old town. The person is wearing a black coat, blue jeans, and a white cap. They are walking towards a building with orange shutters on the right side of the image. The building on the left side has a sign that reads \"No Parking\" and there are potted plants on the sidewalk. The street is lined with old buildings with graffiti on the walls. The sky is overcast and the ground is wet, suggesting that it has recently rained.",
             "matched_attributes": {
               "colors": [
-                "orange",
-                "white",
                 "black",
-                "blue"
+                "blue",
+                "orange",
+                "white"
               ],
               "clothing": [
                 "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
                 "pants",
-                "boots",
-                "suit",
-                "tie",
                 "hat"
               ],
               "scenes": [
                 "street"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
@@ -109,39 +711,28 @@
             "path": "images/4706.jpg",
             "score": 0.07502788305282593,
             "dense_score": 0.07502788305282593,
-            "metadata_score": 1.0,
+            "metadata_score": 0.3333333333333333,
             "caption": "The image shows a young man standing on a sidewalk in front of a brick wall. He is wearing a green jacket, yellow pants, and black sneakers. He has a pair of glasses on and is holding a mobile phone to his ear. On the right side of the image, there is a white door with a red sign that reads \"Emergency Exit\". On the left side, there are two yellow bollards. The man appears to be deep in thought.",
             "matched_attributes": {
               "colors": [
-                "yellow",
-                "white",
-                "black",
                 "green",
+                "yellow",
+                "black",
+                "white",
                 "red"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
                 "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
                 "pants",
-                "boots",
-                "suit",
-                "tie",
-                "cardigan"
+                "sneakers",
+                "cardigan",
+                "blouse",
+                "shirt"
               ],
               "scenes": [
                 "office"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -151,39 +742,23 @@
             "path": "images/1429.jpg",
             "score": 0.060440123081207275,
             "dense_score": 0.060440123081207275,
-            "metadata_score": 0.5,
+            "metadata_score": 0.0,
             "caption": "The image shows a young woman walking on a wet street. She is wearing a green and white patterned coat, black boots, and a black scarf. She has a smile on her face and is holding a black purse in her hand. A man in a black coat and beanie is sweeping the street with a broom. In the background, there are other people walking on the sidewalk and a car parked on the side of the road. The sky is overcast and the ground is wet, suggesting that it has recently rained.",
             "matched_attributes": {
               "colors": [
-                "white",
                 "black",
+                "white",
                 "green"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "scarf",
                 "boots",
-                "suit",
-                "tie"
+                "scarf",
+                "coat"
               ],
               "scenes": [
                 "street"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
@@ -191,39 +766,24 @@
             "path": "images/8033.jpg",
             "score": 0.0550265908241272,
             "dense_score": 0.0550265908241272,
-            "metadata_score": 0.5,
+            "metadata_score": 0.0,
             "caption": "The image shows a person standing on a busy street in an industrial area. The person is wearing a blue jacket, black pants, and an orange backpack. They are standing in the middle of the street, facing away from the camera. The street is lined with tall buildings on both sides, and there are cars and people walking on the sidewalk. Above the person, there is a large metal structure with pipes and wires running along its length. The sky is blue and the overall mood of the image is urban and bustling.",
             "matched_attributes": {
               "colors": [
-                "orange",
+                "blue",
                 "black",
-                "blue"
+                "orange"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
                 "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
                 "pants",
-                "boots",
-                "suit",
-                "tie",
+                "coat",
                 "hat"
               ],
               "scenes": [
                 "street"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           }
         ]
@@ -231,8 +791,43 @@
       {
         "id": "q2_contextual",
         "query": "Professional business attire inside a modern office.",
-        "coverage@1": 1.0,
-        "coverage@5": 0.7333333333333332,
+        "relevant": [
+          "1204",
+          "648",
+          "655",
+          "706",
+          "724",
+          "973",
+          "984",
+          "999"
+        ],
+        "hard_negatives": [
+          "13189",
+          "3661",
+          "909"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "ap@5": 0.0,
+        "diagnostic_coverage@5": 0.3666666666666666,
+        "hard_negative_analysis": {
+          "first_relevant_rank": null,
+          "first_hard_negative_rank": null,
+          "relevant_before_hard_neg": false,
+          "top_k_ids": [
+            "1986",
+            "733",
+            "2389",
+            "1025",
+            "144",
+            "910",
+            "1529",
+            "3220",
+            "623",
+            "108"
+          ]
+        },
         "top_results": [
           {
             "image_id": "1986",
@@ -243,34 +838,21 @@
             "caption": "The image shows a young woman standing in front of a large abstract painting. She is wearing a black and white striped jacket, black pants, and black shoes. She has long dark hair and is looking directly at the camera with a serious expression. The painting behind her is a large, colorful abstract painting with a mix of blues, greens, and yellows. The frame of the painting is made of metal and has a silver border. The floor is tiled and there is a chandelier hanging from the ceiling.",
             "matched_attributes": {
               "colors": [
+                "black",
                 "silver",
-                "white",
-                "black"
+                "white"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
                 "pants",
-                "boots",
-                "suit",
-                "tie",
-                "cardigan"
+                "jacket",
+                "cardigan",
+                "jumpsuit"
               ],
               "scenes": [
                 "office"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
@@ -283,33 +865,23 @@
             "caption": "The image is a portrait of a woman standing on a bridge. She is wearing a grey plaid blazer over a white collared shirt and blue jeans. She has blonde hair and is smiling at the camera. The background is blurred, but it appears to be an urban area with tall buildings. The woman is standing with one hand on her hip and the other resting on her thigh. The overall mood of the image is confident and relaxed.",
             "matched_attributes": {
               "colors": [
-                "white",
                 "blue",
+                "white",
                 "gray"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "blazer",
+                "shirt",
+                "jacket",
+                "blouse",
+                "pants"
               ],
               "scenes": [
                 "street"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
@@ -318,40 +890,27 @@
             "path": "images/2389.jpg",
             "score": 0.0781254768371582,
             "dense_score": 0.0781254768371582,
-            "metadata_score": 0.5,
+            "metadata_score": 0.0,
             "caption": "The image shows a young woman walking down a runway. She is wearing a beige cardigan over a white tank top and dark blue jeans. She has long dark hair and is carrying a brown handbag in her left hand. The runway is white and there are people sitting on either side of the runway, watching the woman. The background is a white wall with a sign that reads \"Into Care\".",
             "matched_attributes": {
               "colors": [
-                "white",
-                "brown",
                 "beige",
-                "blue"
+                "blue",
+                "white",
+                "brown"
               ],
               "clothing": [
-                "coat",
                 "cardigan",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "hoodie",
+                "t-shirt",
+                "shirt",
+                "pants"
               ],
               "scenes": [
                 "runway"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
@@ -359,7 +918,7 @@
             "path": "images/1025.jpg",
             "score": 0.07611668109893799,
             "dense_score": 0.07611668109893799,
-            "metadata_score": 0.5,
+            "metadata_score": 0.0,
             "caption": "The image shows a young woman standing in front of a blue building with a wooden door. She is wearing a white blouse, black trousers, and blue flats. She has a pink handbag on her shoulder and is wearing pink sunglasses. Her hair is styled in a high ponytail and she is looking off to the side with a serious expression on her face. The building appears to be a shop or a restaurant, as there is a sign on the door that reads \"SALE\".",
             "matched_attributes": {
               "colors": [
@@ -369,29 +928,14 @@
                 "pink"
               ],
               "clothing": [
-                "coat",
-                "pants",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
                 "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "boots",
-                "suit",
-                "tie"
+                "pants",
+                "shirt"
               ],
               "scenes": [
                 "restaurant"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
@@ -403,32 +947,21 @@
             "caption": "The image shows a young woman with long blonde hair, wearing a black blazer and a black and white striped top. She is standing in a room with other people in the background. The woman is looking down at her phone and appears to be checking it intently. She has a serious expression on her face and is holding a piece of paper in her hand. There is another woman standing behind her, holding a phone and looking at it. The overall mood of the image is serious and focused.",
             "matched_attributes": {
               "colors": [
-                "white",
-                "black"
+                "black",
+                "white"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
                 "blazer",
                 "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "t-shirt",
+                "jacket",
+                "shirt"
               ],
               "scenes": [
                 "home"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           }
@@ -437,46 +970,62 @@
       {
         "id": "q3_complex",
         "query": "Someone wearing a blue shirt sitting on a park bench.",
-        "coverage@1": 0.75,
-        "coverage@5": 0.85,
+        "relevant": [
+          "3482",
+          "665"
+        ],
+        "hard_negatives": [
+          "192",
+          "5398",
+          "909"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.4,
+        "recall@5": 1.0,
+        "ap@5": 0.45,
+        "diagnostic_coverage@5": 0.65,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 2,
+          "first_hard_negative_rank": 3,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "1332",
+            "665",
+            "192",
+            "3497",
+            "3482",
+            "4049",
+            "3818",
+            "1123",
+            "1566",
+            "3472"
+          ]
+        },
         "top_results": [
           {
             "image_id": "1332",
             "path": "images/1332.jpg",
             "score": 0.10311341285705566,
             "dense_score": 0.10311341285705566,
-            "metadata_score": 0.6666666666666666,
+            "metadata_score": 0.25,
             "caption": "The image shows a young woman sitting on a blue wicker sofa against a yellow brick wall. She is wearing a red and blue patterned top, blue jeans, and red sneakers. She has long brown hair and is wearing glasses. Her arms are crossed over her chest and she is looking off to the side with a serious expression on her face. There are two throw pillows on the sofa, one with a geometric pattern and the other with a zigzag pattern. The floor is made of red bricks.",
             "matched_attributes": {
               "colors": [
-                "yellow",
-                "brown",
                 "blue",
-                "red"
+                "red",
+                "yellow",
+                "brown"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
-                "sweater"
+                "sneakers",
+                "sweater",
+                "pants"
               ],
               "scenes": [
                 "office"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -486,36 +1035,22 @@
             "path": "images/665.jpg",
             "score": 0.10220223665237427,
             "dense_score": 0.10220223665237427,
-            "metadata_score": 1.0,
+            "metadata_score": 0.75,
             "caption": "The image shows a young woman standing in a park with her arms crossed. She is wearing a blue blouse and blue jeans. She has long dark hair and is looking directly at the camera with a serious expression. In the background, there are trees and people sitting on benches, enjoying the scenery. The sky is overcast and the overall mood of the image is peaceful and serene.",
             "matched_attributes": {
               "colors": [
                 "blue"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
                 "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "shirt",
+                "pants"
               ],
               "scenes": [
                 "park"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
@@ -523,38 +1058,23 @@
             "path": "images/192.jpg",
             "score": 0.1008341908454895,
             "dense_score": 0.1008341908454895,
-            "metadata_score": 0.6666666666666666,
+            "metadata_score": 0.5,
             "caption": "The image shows a young woman sitting on a concrete bench in a park. She is wearing a black t-shirt with a graphic design on it and denim shorts. She has a baseball cap on her head and is holding her hands up to her head with both hands. Her mouth is open and she appears to be shouting or laughing. The background shows trees and fallen leaves on the ground. The overall mood of the image is joyful and carefree.",
             "matched_attributes": {
               "colors": [
                 "black"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
                 "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
                 "shorts",
                 "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
+                "hoodie",
                 "hat"
               ],
               "scenes": [
                 "park"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
@@ -562,37 +1082,25 @@
             "path": "images/3497.jpg",
             "score": 0.08660334348678589,
             "dense_score": 0.08660334348678589,
-            "metadata_score": 0.6666666666666666,
+            "metadata_score": 0.25,
             "caption": "The image shows a young woman sitting on the edge of a stone wall next to a body of water. She is wearing a light blue dress and white sneakers. Her long dark hair is styled in loose waves and she is looking off to the side with a serious expression on her face. The water is calm and there are trees in the background. The overall mood of the image is peaceful and serene.",
             "matched_attributes": {
               "colors": [
-                "white",
-                "blue"
+                "blue",
+                "white"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
                 "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
+                "sneakers",
+                "hoodie",
                 "cardigan",
+                "t-shirt",
                 "shorts"
               ],
               "scenes": [
                 "home"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -602,36 +1110,24 @@
             "path": "images/3482.jpg",
             "score": 0.08538246154785156,
             "dense_score": 0.08538246154785156,
-            "metadata_score": 1.0,
+            "metadata_score": 0.75,
             "caption": "The image is a portrait of a young woman sitting on the ground in a park. She is wearing a blue t-shirt with a graphic design on it, black leggings, and black sneakers. She has long dark hair and is smiling at the camera. Her hands are resting on her head and she appears to be deep in thought. The background is filled with trees and greenery, and there is a stone wall on the right side of the image. The overall mood of the photo is peaceful and serene.",
             "matched_attributes": {
               "colors": [
-                "black",
-                "blue"
+                "blue",
+                "black"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
                 "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
+                "sneakers",
                 "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
-                "shorts"
+                "shorts",
+                "dress"
               ],
               "scenes": [
                 "park"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -641,47 +1137,63 @@
       {
         "id": "q4_style",
         "query": "Casual weekend outfit for a city walk.",
-        "coverage@1": 1.0,
-        "coverage@5": 0.9333333333333332,
+        "relevant": [
+          "13189",
+          "2098",
+          "3661",
+          "8792",
+          "909"
+        ],
+        "hard_negatives": [
+          "1204",
+          "724",
+          "901"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.2,
+        "recall@5": 0.2,
+        "ap@5": 0.1,
+        "diagnostic_coverage@5": 0.6399999999999999,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 2,
+          "first_hard_negative_rank": null,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "8566",
+            "2098",
+            "1456",
+            "4019",
+            "251",
+            "8176",
+            "904",
+            "909",
+            "165",
+            "2985"
+          ]
+        },
         "top_results": [
           {
             "image_id": "8566",
             "path": "images/8566.jpg",
             "score": 0.11324018239974976,
             "dense_score": 0.11324018239974976,
-            "metadata_score": 1.0,
+            "metadata_score": 0.5,
             "caption": "The image shows a young woman standing on a busy street. She is wearing a yellow sleeveless top, blue jeans, and flip-flops. She has a brown leather handbag slung over her shoulder and is smiling at the camera. Behind her, there are several motorbikes and people on the street, some of whom are wearing helmets. The street is lined with trees and buildings, and there is a traffic light visible in the background.",
             "matched_attributes": {
               "colors": [
+                "blue",
                 "yellow",
-                "brown",
-                "blue"
+                "brown"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
-                "shorts"
+                "shorts",
+                "dress"
               ],
               "scenes": [
                 "street"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
@@ -693,36 +1205,25 @@
             "caption": "The image shows a young woman standing on a cobblestone street in a European city. She is wearing a beige cardigan with black and white geometric patterns, grey jeans, and black ankle boots. She has a brown crossbody bag slung over her shoulder and is smiling at the camera. In the background, there are other people walking on the street and buildings on both sides. The sky is overcast and the overall mood of the image is casual and relaxed.",
             "matched_attributes": {
               "colors": [
+                "beige",
+                "gray",
                 "white",
                 "black",
-                "brown",
-                "beige",
-                "gray"
+                "brown"
               ],
               "clothing": [
-                "coat",
                 "cardigan",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
+                "jeans",
+                "boots",
                 "blouse",
                 "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "pants"
               ],
               "scenes": [
                 "street"
               ],
               "styles": [
-                "casual",
-                "formal"
+                "casual"
               ]
             }
           },
@@ -735,33 +1236,21 @@
             "caption": "The image shows a young woman standing on a sidewalk in front of a row of white columns. She is wearing a white blouse with a high neckline and a purple pleated skirt. She has a black crossbody bag slung over her shoulder and is wearing white sneakers. Her hair is styled in a high bun and she is looking off to the side with a serious expression on her face. The background shows a brick building with arched windows and a blue fence.",
             "matched_attributes": {
               "colors": [
-                "purple",
                 "white",
+                "purple",
                 "black",
                 "blue"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
                 "blouse",
-                "shirt",
-                "dress",
+                "sneakers",
                 "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "shirt"
               ],
               "scenes": [
                 "park"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -771,39 +1260,24 @@
             "path": "images/4019.jpg",
             "score": 0.10565447807312012,
             "dense_score": 0.10565447807312012,
-            "metadata_score": 1.0,
+            "metadata_score": 0.5,
             "caption": "The image shows a young woman walking on a busy street. She is wearing a gray cardigan over a striped tank top and denim shorts. She has a brown crossbody bag slung over her shoulder and is holding a piece of paper in her hand. The woman has long dark hair and is looking off to the side with a serious expression on her face. In the background, there are other people walking on the sidewalk and a building with a sign that reads \"Bank of America\". There are also cars parked on the side of the street and trees lining the street.",
             "matched_attributes": {
               "colors": [
-                "brown",
-                "gray"
+                "gray",
+                "brown"
               ],
               "clothing": [
-                "coat",
                 "cardigan",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
                 "shorts",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "hoodie",
+                "t-shirt",
+                "shirt"
               ],
               "scenes": [
                 "street"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
@@ -815,32 +1289,22 @@
             "caption": "The image shows a young woman walking on a street. She is wearing a light blue denim jacket, ripped blue jeans, and white sneakers. She has a black crossbody bag slung over her shoulder and is wearing sunglasses. Her blonde hair is styled in loose waves and she is looking down at her phone. In the background, there are other people walking on the sidewalk and a bus stop. There is also a sign that reads \"Your Story\" and a tree on the left side of the image.",
             "matched_attributes": {
               "colors": [
+                "blue",
                 "white",
-                "black",
-                "blue"
+                "black"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "sneakers",
+                "jacket",
+                "hoodie",
+                "t-shirt",
+                "shirt"
               ],
               "scenes": [
                 "street"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -850,15 +1314,45 @@
       {
         "id": "q5_compositional",
         "query": "A red tie and a white shirt in a formal setting.",
-        "coverage@1": 0.625,
-        "coverage@5": 0.725,
+        "relevant": [
+          "1204",
+          "901"
+        ],
+        "hard_negatives": [
+          "1081",
+          "706",
+          "724",
+          "973"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.2,
+        "recall@5": 0.5,
+        "ap@5": 0.16666666666666666,
+        "diagnostic_coverage@5": 0.55,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 3,
+          "first_hard_negative_rank": null,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "1246",
+            "343",
+            "1204",
+            "1002",
+            "999",
+            "4396",
+            "1174",
+            "984",
+            "263",
+            "126"
+          ]
+        },
         "top_results": [
           {
             "image_id": "1246",
             "path": "images/1246.jpg",
             "score": 0.0633401870727539,
             "dense_score": 0.0633401870727539,
-            "metadata_score": 0.625,
+            "metadata_score": 0.4,
             "caption": "The image shows a man standing on a red carpet in front of a backdrop of a city skyline. He is wearing a navy blue button-down shirt, khaki pants, and brown shoes. He has a red lanyard around his neck and is smiling at the camera. Behind him, there is a banner that reads \"AirCinema\" and \"George OpenAir\". The sky is blue and there are trees and buildings visible in the background.",
             "matched_attributes": {
               "colors": [
@@ -868,27 +1362,15 @@
               ],
               "clothing": [
                 "shirt",
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "dress",
-                "skirt",
-                "jeans",
                 "pants",
-                "boots",
-                "suit",
-                "tie"
+                "blouse"
               ],
               "scenes": [
+                "formal",
                 "street"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
@@ -897,81 +1379,28 @@
             "path": "images/343.jpg",
             "score": 0.04679638147354126,
             "dense_score": 0.04679638147354126,
-            "metadata_score": 0.625,
+            "metadata_score": 0.4,
             "caption": "The image shows a young man standing in front of a modern building. He is wearing a navy blue coat, a white shirt, maroon trousers, and brown ankle boots. He has a beige fedora on his head and is looking off to the side with a serious expression on his face. The building behind him has a glass facade and there is a metal railing on the right side of the image.",
             "matched_attributes": {
               "colors": [
+                "blue",
                 "white",
+                "red",
                 "brown",
-                "beige",
-                "blue"
+                "beige"
               ],
               "clothing": [
                 "coat",
-                "pants",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
                 "shirt",
-                "dress",
-                "skirt",
-                "jeans",
+                "pants",
                 "boots",
-                "suit",
-                "tie",
-                "hat"
+                "hoodie",
+                "t-shirt"
               ],
               "scenes": [
                 "street"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
-            }
-          },
-          {
-            "image_id": "1650",
-            "path": "images/1650.jpg",
-            "score": 0.045723140239715576,
-            "dense_score": 0.045723140239715576,
-            "metadata_score": 0.75,
-            "caption": "The image shows a young woman standing in front of a string of white fairy lights. She is wearing a white coat, a red scarf, and a brown hat. She has long brown hair and is carrying a red handbag. The background is dark, and there are red poinsettias on the right side of the image. The fairy lights are arranged in a way that creates a magical and whimsical atmosphere.",
-            "matched_attributes": {
-              "colors": [
-                "white",
-                "brown",
-                "red"
-              ],
-              "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "scarf",
-                "boots",
-                "suit",
-                "tie",
-                "hat"
-              ],
-              "scenes": [
-                "park"
-              ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
@@ -979,38 +1408,28 @@
             "path": "images/1204.jpg",
             "score": 0.04518216848373413,
             "dense_score": 0.04518216848373413,
-            "metadata_score": 1.0,
+            "metadata_score": 0.8,
             "caption": "The image shows a man standing on a red carpet at an event. He is wearing a navy blue suit with a white shirt and a maroon tie. He has short dark hair and is smiling at the camera. Behind him, there is a white backdrop with the words \"InStyle\" and \"Nespresso\" written in black. The man is also wearing black shoes.",
             "matched_attributes": {
               "colors": [
-                "white",
-                "black",
                 "blue",
-                "red"
+                "white",
+                "red",
+                "black"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
                 "suit",
-                "tie"
+                "shirt",
+                "tie",
+                "jacket",
+                "blouse",
+                "pants"
               ],
               "scenes": [
-                "office"
+                "formal"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
@@ -1019,132 +1438,158 @@
             "path": "images/1002.jpg",
             "score": 0.039750099182128906,
             "dense_score": 0.039750099182128906,
-            "metadata_score": 0.625,
+            "metadata_score": 0.5,
             "caption": "The image shows a man standing on a black carpet in front of a black backdrop with the words \"Jack Reacher\" written in white. The man is wearing a black suit with a white shirt and black shoes. He has a pair of glasses on and is looking directly at the camera with a serious expression on his face. He appears to be at a movie premiere or event.",
+            "matched_attributes": {
+              "colors": [
+                "black",
+                "white"
+              ],
+              "clothing": [
+                "suit",
+                "shirt",
+                "jacket",
+                "blouse",
+                "pants"
+              ],
+              "scenes": [
+                "street"
+              ],
+              "styles": [
+                "formal"
+              ]
+            }
+          },
+          {
+            "image_id": "999",
+            "path": "images/999.jpg",
+            "score": 0.03603971004486084,
+            "dense_score": 0.03603971004486084,
+            "metadata_score": 0.5,
+            "caption": "The image shows a man walking on a runway. He is wearing a white blazer with a black lapel and a black tie. He has a beard and is wearing black trousers and black shoes. The background is a white wall with a large screen displaying the words \"Western Canada Fashion Week\". The man appears to be walking confidently with his hands in his pockets.",
             "matched_attributes": {
               "colors": [
                 "white",
                 "black"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
                 "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
+                "tie",
                 "pants",
-                "boots",
-                "suit",
-                "tie"
+                "jacket",
+                "blouse",
+                "shirt"
               ],
               "scenes": [
-                "street"
+                "runway"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           }
         ]
       }
     ],
-    "mean_coverage@1": 0.875,
-    "mean_coverage@5": 0.7883333333333333
+    "mean_precision@1": 0.0,
+    "mean_precision@5": 0.16,
+    "mean_recall@5": 0.33999999999999997,
+    "mean_ap@5": 0.14333333333333334,
+    "q5_relevant_before_hard_neg": true
   },
   "hybrid": {
     "per_query": [
       {
         "id": "q1_attribute",
         "query": "A person in a bright yellow raincoat.",
-        "coverage@1": 1.0,
-        "coverage@5": 1.0,
+        "relevant": [
+          "189",
+          "404",
+          "6935",
+          "7943"
+        ],
+        "hard_negatives": [
+          "4177",
+          "898"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "ap@5": 0.0,
+        "diagnostic_coverage@5": 0.6666666666666666,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 6,
+          "first_hard_negative_rank": 7,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "8792",
+            "4706",
+            "4185",
+            "2007",
+            "6874",
+            "404",
+            "898",
+            "2550",
+            "4653",
+            "2557"
+          ]
+        },
         "top_results": [
           {
             "image_id": "8792",
             "path": "images/8792.jpg",
-            "score": 0.35343509316444394,
+            "score": 0.15343509316444395,
             "dense_score": 0.0763358473777771,
-            "metadata_score": 1.0,
+            "metadata_score": 0.3333333333333333,
             "caption": "The image shows a young woman walking on a busy street in New York City. She is wearing a black coat, black pants, and brown boots. She has blonde hair and is carrying a brown bag. In the background, there is a yellow taxi cab parked on the side of the street. The street is lined with orange traffic cones and there are other people walking on the sidewalk. On the right side, there are buildings with shops and businesses. The sky is overcast and the overall mood of the image is busy and bustling.",
             "matched_attributes": {
               "colors": [
-                "yellow",
-                "orange",
                 "black",
-                "brown"
+                "brown",
+                "yellow",
+                "orange"
               ],
               "clothing": [
                 "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
                 "pants",
                 "boots",
-                "suit",
-                "tie",
                 "scarf"
               ],
               "scenes": [
                 "street"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
           {
             "image_id": "4706",
             "path": "images/4706.jpg",
-            "score": 0.3525195181369781,
+            "score": 0.15251951813697814,
             "dense_score": 0.07502788305282593,
-            "metadata_score": 1.0,
+            "metadata_score": 0.3333333333333333,
             "caption": "The image shows a young man standing on a sidewalk in front of a brick wall. He is wearing a green jacket, yellow pants, and black sneakers. He has a pair of glasses on and is holding a mobile phone to his ear. On the right side of the image, there is a white door with a red sign that reads \"Emergency Exit\". On the left side, there are two yellow bollards. The man appears to be deep in thought.",
             "matched_attributes": {
               "colors": [
-                "yellow",
-                "white",
-                "black",
                 "green",
+                "yellow",
+                "black",
+                "white",
                 "red"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
                 "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
                 "pants",
-                "boots",
-                "suit",
-                "tie",
-                "cardigan"
+                "sneakers",
+                "cardigan",
+                "blouse",
+                "shirt"
               ],
               "scenes": [
                 "office"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -1152,92 +1597,58 @@
           {
             "image_id": "4185",
             "path": "images/4185.jpg",
-            "score": 0.337211549282074,
+            "score": 0.13721154928207396,
             "dense_score": 0.053159356117248535,
-            "metadata_score": 1.0,
+            "metadata_score": 0.3333333333333333,
             "caption": "The image shows a young man walking through a shopping mall. He is wearing a yellow tank top with the word \"The Body Shop\" written on it and black shorts. He has a black backpack slung over his shoulder and is carrying a blue bag in his left hand. He appears to be talking on his mobile phone and seems to be deep in thought. In the background, there are other shoppers and shops with colorful decorations. The mall has a high ceiling with a skylight.",
             "matched_attributes": {
               "colors": [
-                "yellow",
                 "black",
+                "yellow",
                 "blue"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
                 "shorts",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
                 "hat"
               ],
               "scenes": [
                 "home"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
             "image_id": "2007",
             "path": "images/2007.jpg",
-            "score": 0.33679356575012204,
+            "score": 0.13679356575012205,
             "dense_score": 0.05256223678588867,
-            "metadata_score": 1.0,
+            "metadata_score": 0.3333333333333333,
             "caption": "The image shows a young woman walking on a busy street. She is wearing a blue coat with a leopard print pattern and a yellow scarf around her neck. She has a blue bag slung over her shoulder and is holding a white phone in her hand. The street is lined with orange traffic cones and there are cars parked on the side of the road. The buildings on both sides of the street have shops and banners hanging from them. The woman appears to be deep in thought as she walks.",
             "matched_attributes": {
               "colors": [
+                "blue",
                 "yellow",
                 "orange",
-                "white",
-                "blue"
+                "white"
               ],
               "clothing": [
                 "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
                 "scarf",
-                "boots",
-                "suit",
-                "tie",
-                "sweater"
+                "sweater",
+                "jacket"
               ],
               "scenes": [
                 "street"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
             "image_id": "6874",
             "path": "images/6874.jpg",
-            "score": 0.3354243755340576,
+            "score": 0.13542437553405762,
             "dense_score": 0.05060625076293945,
-            "metadata_score": 1.0,
+            "metadata_score": 0.3333333333333333,
             "caption": "The image shows a man sitting on a bench, taking a photo of a city skyline. He is wearing a long coat and a cap, and is holding a pair of binoculars in his hands. The man is standing on a concrete wall, and there is a tree with yellow leaves in the foreground. In the background, there are several buildings and a bridge over a river. The sky is cloudy, and the overall mood of the image is peaceful and serene.",
             "matched_attributes": {
               "colors": [
@@ -1245,29 +1656,12 @@
               ],
               "clothing": [
                 "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
                 "hat"
               ],
               "scenes": [
                 "street"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           }
         ]
@@ -1275,8 +1669,43 @@
       {
         "id": "q2_contextual",
         "query": "Professional business attire inside a modern office.",
-        "coverage@1": 1.0,
-        "coverage@5": 1.0,
+        "relevant": [
+          "1204",
+          "648",
+          "655",
+          "706",
+          "724",
+          "973",
+          "984",
+          "999"
+        ],
+        "hard_negatives": [
+          "13189",
+          "3661",
+          "909"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.4,
+        "recall@5": 0.25,
+        "ap@5": 0.2333333333333333,
+        "diagnostic_coverage@5": 0.7,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 2,
+          "first_hard_negative_rank": null,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "1986",
+            "648",
+            "655",
+            "733",
+            "144",
+            "910",
+            "1529",
+            "3220",
+            "1083",
+            "4483"
+          ]
+        },
         "top_results": [
           {
             "image_id": "1986",
@@ -1287,198 +1716,135 @@
             "caption": "The image shows a young woman standing in front of a large abstract painting. She is wearing a black and white striped jacket, black pants, and black shoes. She has long dark hair and is looking directly at the camera with a serious expression. The painting behind her is a large, colorful abstract painting with a mix of blues, greens, and yellows. The frame of the painting is made of metal and has a silver border. The floor is tiled and there is a chandelier hanging from the ceiling.",
             "matched_attributes": {
               "colors": [
+                "black",
                 "silver",
-                "white",
-                "black"
+                "white"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
                 "pants",
-                "boots",
-                "suit",
-                "tie",
-                "cardigan"
+                "jacket",
+                "cardigan",
+                "jumpsuit"
               ],
               "scenes": [
                 "office"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
           {
             "image_id": "648",
             "path": "images/648.jpg",
-            "score": 0.3436840772628784,
-            "dense_score": 0.06240582466125488,
+            "score": 0.34368403553962706,
+            "dense_score": 0.06240576505661011,
             "metadata_score": 1.0,
             "caption": "The image shows a young man standing on a stone staircase in front of a white building with a large window. He is wearing a grey suit with a blue tie, black trousers, and brown shoes. He has a black pocket square on his lapel and is holding a small white purse in his left hand. His hair is styled in a short, neat cut and he is looking off to the side with a serious expression on his face.",
             "matched_attributes": {
               "colors": [
+                "gray",
+                "blue",
+                "black",
                 "white",
-                "black",
-                "brown",
-                "blue",
-                "gray"
+                "brown"
               ],
               "clothing": [
-                "coat",
-                "pants",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "boots",
                 "suit",
-                "tie"
+                "tie",
+                "pants",
+                "jacket",
+                "blouse",
+                "shirt"
               ],
               "scenes": [
                 "office"
               ],
               "styles": [
-                "formal",
-                "casual"
-              ]
-            }
-          },
-          {
-            "image_id": "4869",
-            "path": "images/4869.jpg",
-            "score": 0.3411974966526031,
-            "dense_score": 0.05885356664657593,
-            "metadata_score": 1.0,
-            "caption": "The image shows a young woman standing in front of a blue metal archway with potted plants on either side. She is wearing a red cardigan over a black leather skirt and black high heels. She has long dark hair and is posing with one hand on her hip and the other resting on her thigh. The archway is made of metal and has intricate designs on it. The background is a stone wall with a stone archway. The overall mood of the image is casual and relaxed.",
-            "matched_attributes": {
-              "colors": [
-                "black",
-                "blue",
-                "red"
-              ],
-              "clothing": [
-                "coat",
-                "cardigan",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "heels",
-                "suit",
-                "tie"
-              ],
-              "scenes": [
-                "office"
-              ],
-              "styles": [
-                "casual",
                 "formal"
               ]
             }
           },
           {
-            "image_id": "1204",
-            "path": "images/1204.jpg",
-            "score": 0.33398183584213254,
-            "dense_score": 0.0485454797744751,
+            "image_id": "655",
+            "path": "images/655.jpg",
+            "score": 0.33139770627021786,
+            "dense_score": 0.04485386610031128,
             "metadata_score": 1.0,
-            "caption": "The image shows a man standing on a red carpet at an event. He is wearing a navy blue suit with a white shirt and a maroon tie. He has short dark hair and is smiling at the camera. Behind him, there is a white backdrop with the words \"InStyle\" and \"Nespresso\" written in black. The man is also wearing black shoes.",
+            "caption": "The image shows a young man in a black suit and tie standing behind a glass display case in a store. He is holding a small bottle of perfume in his right hand and appears to be looking at the camera with a serious expression. The display case is made of clear glass and has several small bottles of perfume arranged neatly on it. The man is standing in front of a mirror and there are other mannequins in the background. The store has a modern and elegant design with white walls and a high ceiling.",
             "matched_attributes": {
               "colors": [
-                "white",
                 "black",
-                "blue",
-                "red"
+                "white"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
                 "suit",
-                "tie"
+                "tie",
+                "jacket",
+                "blouse",
+                "shirt"
               ],
               "scenes": [
                 "office"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "elegant",
+                "formal"
               ]
             }
           },
           {
-            "image_id": "4653",
-            "path": "images/4653.jpg",
-            "score": 0.3339281797409057,
-            "dense_score": 0.048468828201293945,
-            "metadata_score": 1.0,
-            "caption": "The image is a full-length portrait of a young woman posing in a casual outfit. She is standing in front of a white background and is smiling at the camera. The woman is wearing a yellow cardigan over a blue button-down shirt, light pink trousers, and beige flats. She has a beige backpack slung over her shoulder and is holding a small white purse in her left hand. Her hair is styled in loose waves and she is wearing minimal makeup. The overall mood of the image is happy and relaxed.",
+            "image_id": "733",
+            "path": "images/733.jpg",
+            "score": 0.2074408173561096,
+            "dense_score": 0.08205831050872803,
+            "metadata_score": 0.5,
+            "caption": "The image is a portrait of a woman standing on a bridge. She is wearing a grey plaid blazer over a white collared shirt and blue jeans. She has blonde hair and is smiling at the camera. The background is blurred, but it appears to be an urban area with tall buildings. The woman is standing with one hand on her hip and the other resting on her thigh. The overall mood of the image is confident and relaxed.",
             "matched_attributes": {
               "colors": [
-                "yellow",
-                "white",
-                "beige",
                 "blue",
-                "pink"
+                "white",
+                "gray"
               ],
               "clothing": [
-                "shirt",
-                "coat",
-                "cardigan",
-                "pants",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "dress",
-                "skirt",
                 "jeans",
-                "boots",
-                "suit",
-                "tie"
+                "blazer",
+                "shirt",
+                "jacket",
+                "blouse",
+                "pants"
               ],
               "scenes": [
-                "office"
+                "street"
               ],
               "styles": [
-                "minimal",
-                "casual",
+                "formal"
+              ]
+            }
+          },
+          {
+            "image_id": "144",
+            "path": "images/144.jpg",
+            "score": 0.20256211757659912,
+            "dense_score": 0.0750887393951416,
+            "metadata_score": 0.5,
+            "caption": "The image shows a young woman with long blonde hair, wearing a black blazer and a black and white striped top. She is standing in a room with other people in the background. The woman is looking down at her phone and appears to be checking it intently. She has a serious expression on her face and is holding a piece of paper in her hand. There is another woman standing behind her, holding a phone and looking at it. The overall mood of the image is serious and focused.",
+            "matched_attributes": {
+              "colors": [
+                "black",
+                "white"
+              ],
+              "clothing": [
+                "blazer",
+                "hoodie",
+                "t-shirt",
+                "jacket",
+                "shirt"
+              ],
+              "scenes": [
+                "home"
+              ],
+              "styles": [
                 "formal"
               ]
             }
@@ -1488,121 +1854,84 @@
       {
         "id": "q3_complex",
         "query": "Someone wearing a blue shirt sitting on a park bench.",
-        "coverage@1": 1.0,
-        "coverage@5": 1.0,
+        "relevant": [
+          "3482",
+          "665"
+        ],
+        "hard_negatives": [
+          "192",
+          "5398",
+          "909"
+        ],
+        "precision@1": 1.0,
+        "precision@5": 0.4,
+        "recall@5": 1.0,
+        "ap@5": 1.0,
+        "diagnostic_coverage@5": 0.85,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 1,
+          "first_hard_negative_rank": 7,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "665",
+            "3482",
+            "3472",
+            "4939",
+            "2371",
+            "854",
+            "192",
+            "3818",
+            "1123",
+            "13254"
+          ]
+        },
         "top_results": [
           {
             "image_id": "665",
             "path": "images/665.jpg",
-            "score": 0.37154156565666197,
+            "score": 0.29654156565666195,
             "dense_score": 0.10220223665237427,
-            "metadata_score": 1.0,
+            "metadata_score": 0.75,
             "caption": "The image shows a young woman standing in a park with her arms crossed. She is wearing a blue blouse and blue jeans. She has long dark hair and is looking directly at the camera with a serious expression. In the background, there are trees and people sitting on benches, enjoying the scenery. The sky is overcast and the overall mood of the image is peaceful and serene.",
             "matched_attributes": {
               "colors": [
                 "blue"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
                 "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "shirt",
+                "pants"
               ],
               "scenes": [
                 "park"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
             "image_id": "3482",
             "path": "images/3482.jpg",
-            "score": 0.3597677230834961,
+            "score": 0.28476772308349607,
             "dense_score": 0.08538246154785156,
-            "metadata_score": 1.0,
+            "metadata_score": 0.75,
             "caption": "The image is a portrait of a young woman sitting on the ground in a park. She is wearing a blue t-shirt with a graphic design on it, black leggings, and black sneakers. She has long dark hair and is smiling at the camera. Her hands are resting on her head and she appears to be deep in thought. The background is filled with trees and greenery, and there is a stone wall on the right side of the image. The overall mood of the photo is peaceful and serene.",
             "matched_attributes": {
               "colors": [
-                "black",
-                "blue"
+                "blue",
+                "black"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
                 "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
+                "sneakers",
                 "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
-                "shorts"
-              ],
-              "scenes": [
-                "park"
-              ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
-            }
-          },
-          {
-            "image_id": "3818",
-            "path": "images/3818.jpg",
-            "score": 0.35343271493911743,
-            "dense_score": 0.0763324499130249,
-            "metadata_score": 1.0,
-            "caption": "The image shows a young woman sitting on a paved path in a park. She is wearing a denim tank top, denim shorts, and white sneakers. Her long brown hair is styled in loose waves and she is looking off to the side with a thoughtful expression on her face. The path is lined with trees on both sides and the ground is covered in fallen leaves. The sky is blue and the overall mood of the image is peaceful and serene.",
-            "matched_attributes": {
-              "colors": [
-                "white",
-                "brown",
-                "blue"
-              ],
-              "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
                 "shorts",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "dress"
               ],
               "scenes": [
                 "park"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -1610,84 +1939,84 @@
           {
             "image_id": "3472",
             "path": "images/3472.jpg",
-            "score": 0.34254645109176635,
+            "score": 0.26754645109176634,
             "dense_score": 0.06078064441680908,
-            "metadata_score": 1.0,
+            "metadata_score": 0.75,
             "caption": "The image shows a young woman sitting on a grassy lawn in a park. She is wearing a green cardigan, a white blouse, black tights, and yellow flats. She has a red handbag on her lap and is looking directly at the camera with a slight smile on her face. In the background, there are other people sitting and lying on the grass, some of them are sitting on benches and others are standing. There are trees and parked cars visible in the distance. The sky is blue and the weather appears to be sunny and pleasant.",
             "matched_attributes": {
               "colors": [
-                "yellow",
-                "white",
-                "black",
                 "green",
+                "white",
+                "yellow",
+                "black",
                 "blue",
                 "red"
               ],
               "clothing": [
-                "coat",
                 "cardigan",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
                 "blouse",
-                "shirt",
-                "dress",
-                "skirt",
+                "shirt"
+              ],
+              "scenes": [
+                "park"
+              ],
+              "styles": []
+            }
+          },
+          {
+            "image_id": "4939",
+            "path": "images/4939.jpg",
+            "score": 0.25982059836387633,
+            "dense_score": 0.049743711948394775,
+            "metadata_score": 0.75,
+            "caption": "The image shows a young woman sitting on a stone wall in a park. She is wearing a gray cardigan, blue jeans, and black knee-high boots. She has long dark hair and is looking directly at the camera with a slight smile on her face. The background is blurred, but it appears to be a park with trees and greenery. The overall mood of the image is relaxed and casual.",
+            "matched_attributes": {
+              "colors": [
+                "gray",
+                "blue",
+                "black"
+              ],
+              "clothing": [
+                "cardigan",
                 "jeans",
-                "pants",
                 "boots",
-                "suit",
-                "tie"
+                "hoodie",
+                "t-shirt",
+                "shirt"
               ],
               "scenes": [
                 "park"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
           },
           {
-            "image_id": "13254",
-            "path": "images/13254.jpg",
-            "score": 0.34169713258743284,
-            "dense_score": 0.05956733226776123,
-            "metadata_score": 1.0,
-            "caption": "The image shows a woman walking on a sidewalk in a park. She is wearing a blue coat with a pink scarf around her neck and a black backpack on her back. She has shoulder-length blonde hair and is wearing sunglasses. The background shows a grassy area with trees and a building in the distance. The woman appears to be walking with purpose and is looking off into the distance with a serious expression on her face.",
+            "image_id": "2371",
+            "path": "images/2371.jpg",
+            "score": 0.2592875003814697,
+            "dense_score": 0.04898214340209961,
+            "metadata_score": 0.75,
+            "caption": "The image shows a young woman sitting on the ground in front of a large concrete structure. She is wearing a green long-sleeved shirt, blue jeans, and black boots. She has long red hair and is smiling at the camera. The structure appears to be a modern building with a sloping roof and a metal gate on the right side. The ground is made of concrete and there is a red dumpster on the left side of the image. The sky is overcast and the overall mood of the photo is peaceful and serene.",
             "matched_attributes": {
               "colors": [
-                "black",
                 "blue",
-                "pink"
+                "black",
+                "green",
+                "red"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
-                "scarf",
                 "boots",
-                "suit",
-                "tie"
+                "shirt",
+                "sweater",
+                "pants"
               ],
               "scenes": [
                 "park"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           }
         ]
@@ -1695,49 +2024,41 @@
       {
         "id": "q4_style",
         "query": "Casual weekend outfit for a city walk.",
-        "coverage@1": 1.0,
-        "coverage@5": 1.0,
+        "relevant": [
+          "13189",
+          "2098",
+          "3661",
+          "8792",
+          "909"
+        ],
+        "hard_negatives": [
+          "1204",
+          "724",
+          "901"
+        ],
+        "precision@1": 1.0,
+        "precision@5": 0.4,
+        "recall@5": 0.4,
+        "ap@5": 0.3333333333333333,
+        "diagnostic_coverage@5": 0.7999999999999999,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 1,
+          "first_hard_negative_rank": null,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "2098",
+            "251",
+            "909",
+            "5966",
+            "14202",
+            "341",
+            "791",
+            "9278",
+            "8566",
+            "1456"
+          ]
+        },
         "top_results": [
-          {
-            "image_id": "8566",
-            "path": "images/8566.jpg",
-            "score": 0.3792681276798248,
-            "dense_score": 0.11324018239974976,
-            "metadata_score": 1.0,
-            "caption": "The image shows a young woman standing on a busy street. She is wearing a yellow sleeveless top, blue jeans, and flip-flops. She has a brown leather handbag slung over her shoulder and is smiling at the camera. Behind her, there are several motorbikes and people on the street, some of whom are wearing helmets. The street is lined with trees and buildings, and there is a traffic light visible in the background.",
-            "matched_attributes": {
-              "colors": [
-                "yellow",
-                "brown",
-                "blue"
-              ],
-              "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
-                "shorts"
-              ],
-              "scenes": [
-                "street"
-              ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
-            }
-          },
           {
             "image_id": "2098",
             "path": "images/2098.jpg",
@@ -1747,75 +2068,24 @@
             "caption": "The image shows a young woman standing on a cobblestone street in a European city. She is wearing a beige cardigan with black and white geometric patterns, grey jeans, and black ankle boots. She has a brown crossbody bag slung over her shoulder and is smiling at the camera. In the background, there are other people walking on the street and buildings on both sides. The sky is overcast and the overall mood of the image is casual and relaxed.",
             "matched_attributes": {
               "colors": [
+                "beige",
+                "gray",
                 "white",
                 "black",
-                "brown",
-                "beige",
-                "gray"
+                "brown"
               ],
               "clothing": [
-                "coat",
                 "cardigan",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
+                "jeans",
+                "boots",
                 "blouse",
                 "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "pants"
               ],
               "scenes": [
                 "street"
               ],
               "styles": [
-                "casual",
-                "formal"
-              ]
-            }
-          },
-          {
-            "image_id": "4019",
-            "path": "images/4019.jpg",
-            "score": 0.37395813465118405,
-            "dense_score": 0.10565447807312012,
-            "metadata_score": 1.0,
-            "caption": "The image shows a young woman walking on a busy street. She is wearing a gray cardigan over a striped tank top and denim shorts. She has a brown crossbody bag slung over her shoulder and is holding a piece of paper in her hand. The woman has long dark hair and is looking off to the side with a serious expression on her face. In the background, there are other people walking on the sidewalk and a building with a sign that reads \"Bank of America\". There are also cars parked on the side of the street and trees lining the street.",
-            "matched_attributes": {
-              "colors": [
-                "brown",
-                "gray"
-              ],
-              "clothing": [
-                "coat",
-                "cardigan",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shorts",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
-              ],
-              "scenes": [
-                "street"
-              ],
-              "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -1829,32 +2099,22 @@
             "caption": "The image shows a young woman walking on a street. She is wearing a light blue denim jacket, ripped blue jeans, and white sneakers. She has a black crossbody bag slung over her shoulder and is wearing sunglasses. Her blonde hair is styled in loose waves and she is looking down at her phone. In the background, there are other people walking on the sidewalk and a bus stop. There is also a sign that reads \"Your Story\" and a tree on the left side of the image.",
             "matched_attributes": {
               "colors": [
+                "blue",
                 "white",
-                "black",
-                "blue"
+                "black"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "sneakers",
+                "jacket",
+                "hoodie",
+                "t-shirt",
+                "shirt"
               ],
               "scenes": [
                 "street"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -1871,22 +2131,63 @@
                 "blue"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
                 "jacket",
-                "blazer",
-                "hoodie",
+                "jeans",
+                "heels",
                 "blouse",
                 "shirt",
-                "dress",
-                "skirt",
-                "jeans",
+                "pants"
+              ],
+              "scenes": [
+                "street"
+              ],
+              "styles": [
+                "casual"
+              ]
+            }
+          },
+          {
+            "image_id": "5966",
+            "path": "images/5966.jpg",
+            "score": 0.364199024438858,
+            "dense_score": 0.09171289205551147,
+            "metadata_score": 1.0,
+            "caption": "The image shows a young woman walking on a street. She is wearing a white blouse, black trousers, and white slip-on sneakers. She has a beige crossbody bag slung over her shoulder and is wearing sunglasses. Her long dark hair is styled in loose waves and she is looking off to the side with a serious expression on her face. In the background, there is a white fence and a building. The sky is blue and the weather appears to be sunny.",
+            "matched_attributes": {
+              "colors": [
+                "white",
+                "black",
+                "beige",
+                "blue"
+              ],
+              "clothing": [
+                "blouse",
                 "pants",
-                "boots",
-                "heels",
-                "suit",
-                "tie"
+                "sneakers",
+                "coat"
+              ],
+              "scenes": [
+                "street"
+              ],
+              "styles": [
+                "casual"
+              ]
+            }
+          },
+          {
+            "image_id": "14202",
+            "path": "images/14202.jpg",
+            "score": 0.3621148645877838,
+            "dense_score": 0.08873552083969116,
+            "metadata_score": 1.0,
+            "caption": "The image shows a young woman standing on a sidewalk on a busy street. She is wearing a blue and white patterned romper and strappy sandals. She has blonde hair and is looking down at her phone. The street is lined with shops and restaurants, and there is a trash can on the right side of the image. The sky is overcast and the overall mood of the photo is casual and relaxed.",
+            "matched_attributes": {
+              "colors": [
+                "white",
+                "blue"
+              ],
+              "clothing": [
+                "jumpsuit"
               ],
               "scenes": [
                 "street"
@@ -1902,301 +2203,286 @@
       {
         "id": "q5_compositional",
         "query": "A red tie and a white shirt in a formal setting.",
-        "coverage@1": 1.0,
-        "coverage@5": 0.975,
+        "relevant": [
+          "1204",
+          "901"
+        ],
+        "hard_negatives": [
+          "1081",
+          "706",
+          "724",
+          "973"
+        ],
+        "precision@1": 1.0,
+        "precision@5": 0.2,
+        "recall@5": 0.5,
+        "ap@5": 0.5,
+        "diagnostic_coverage@5": 0.75,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 1,
+          "first_hard_negative_rank": 2,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "1204",
+            "724",
+            "706",
+            "655",
+            "973",
+            "1081",
+            "910",
+            "3220",
+            "5256",
+            "1002"
+          ]
+        },
         "top_results": [
           {
             "image_id": "1204",
             "path": "images/1204.jpg",
-            "score": 0.3316275179386139,
+            "score": 0.2716275179386139,
             "dense_score": 0.04518216848373413,
-            "metadata_score": 1.0,
+            "metadata_score": 0.8,
             "caption": "The image shows a man standing on a red carpet at an event. He is wearing a navy blue suit with a white shirt and a maroon tie. He has short dark hair and is smiling at the camera. Behind him, there is a white backdrop with the words \"InStyle\" and \"Nespresso\" written in black. The man is also wearing black shoes.",
             "matched_attributes": {
               "colors": [
-                "white",
-                "black",
                 "blue",
-                "red"
+                "white",
+                "red",
+                "black"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
                 "suit",
-                "tie"
+                "shirt",
+                "tie",
+                "jacket",
+                "blouse",
+                "pants"
               ],
               "scenes": [
-                "office"
+                "formal"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
           {
             "image_id": "724",
             "path": "images/724.jpg",
-            "score": 0.318862372636795,
+            "score": 0.22886237263679504,
             "dense_score": 0.02694624662399292,
-            "metadata_score": 1.0,
+            "metadata_score": 0.7,
             "caption": "The image shows a man standing on a red carpet at an event. He is wearing a black suit with a white shirt, black tie, and black shoes. He has a white pocket square on his lapel and is bald. The background is black with the words \"Grace Monaco\" and the logo of the event. The man is posing with his hands in his pockets and is looking directly at the camera with a serious expression.",
             "matched_attributes": {
               "colors": [
-                "white",
                 "black",
+                "white",
                 "red"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
                 "suit",
-                "tie"
+                "shirt",
+                "tie",
+                "jacket",
+                "blouse",
+                "pants"
               ],
               "scenes": [
-                "office"
+                "formal"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
           {
             "image_id": "706",
             "path": "images/706.jpg",
-            "score": 0.31530963778495785,
+            "score": 0.22530963778495788,
             "dense_score": 0.021870911121368408,
-            "metadata_score": 1.0,
+            "metadata_score": 0.7,
             "caption": "The image shows a man standing on a black carpet at an event. He is wearing a black suit with a white shirt and a patterned tie. He has short grey hair and is smiling at the camera. Behind him, there is a white backdrop with various logos and sponsors. The man appears to be posing for a photo on the red carpet.",
             "matched_attributes": {
               "colors": [
-                "white",
                 "black",
+                "white",
                 "gray",
                 "red"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
                 "suit",
-                "tie"
+                "shirt",
+                "tie",
+                "jacket",
+                "blouse",
+                "pants"
               ],
               "scenes": [
-                "office"
+                "formal"
               ],
               "styles": [
-                "formal",
-                "casual"
-              ]
-            }
-          },
-          {
-            "image_id": "5256",
-            "path": "images/5256.jpg",
-            "score": 0.30316404104232786,
-            "dense_score": 0.004520058631896973,
-            "metadata_score": 1.0,
-            "caption": "The image shows a young woman standing in front of a train at a train station. She is wearing a red jumpsuit with a gold belt and a pair of sunglasses. She has curly black hair and is holding a phone to her ear with one hand. The train is white with yellow stripes and has the words \"Regional Train\" written on the side. The woman is posing with her hand on her hip and is looking off to the side with a serious expression on her face.",
-            "matched_attributes": {
-              "colors": [
-                "yellow",
-                "white",
-                "black",
-                "gold",
-                "red"
-              ],
-              "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
-              ],
-              "scenes": [
-                "office"
-              ],
-              "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
           {
             "image_id": "655",
             "path": "images/655.jpg",
-            "score": 0.27489939928054813,
+            "score": 0.22239939928054808,
             "dense_score": 0.017713427543640137,
-            "metadata_score": 0.875,
+            "metadata_score": 0.7,
             "caption": "The image shows a young man in a black suit and tie standing behind a glass display case in a store. He is holding a small bottle of perfume in his right hand and appears to be looking at the camera with a serious expression. The display case is made of clear glass and has several small bottles of perfume arranged neatly on it. The man is standing in front of a mirror and there are other mannequins in the background. The store has a modern and elegant design with white walls and a high ceiling.",
             "matched_attributes": {
               "colors": [
-                "white",
-                "black"
+                "black",
+                "white"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
                 "suit",
-                "tie"
+                "tie",
+                "jacket",
+                "blouse",
+                "shirt"
               ],
               "scenes": [
                 "office"
               ],
               "styles": [
                 "elegant",
-                "formal",
-                "casual"
+                "formal"
+              ]
+            }
+          },
+          {
+            "image_id": "973",
+            "path": "images/973.jpg",
+            "score": 0.19762006282806396,
+            "dense_score": 0.025171518325805664,
+            "metadata_score": 0.6,
+            "caption": "The image shows a man standing on a red carpet at an event. He is wearing a black suit with a white shirt and black trousers. He has short, dark hair and is wearing glasses. The man is looking directly at the camera with a serious expression on his face. In the background, there is a black backdrop with the words \"Jack Reacher\" written in white.",
+            "matched_attributes": {
+              "colors": [
+                "black",
+                "white",
+                "red"
+              ],
+              "clothing": [
+                "suit",
+                "shirt",
+                "pants",
+                "jacket",
+                "blouse"
+              ],
+              "scenes": [
+                "formal"
+              ],
+              "styles": [
+                "formal"
               ]
             }
           }
         ]
       }
     ],
-    "mean_coverage@1": 1.0,
-    "mean_coverage@5": 0.9949999999999999
+    "mean_precision@1": 0.6,
+    "mean_precision@5": 0.28,
+    "mean_recall@5": 0.43,
+    "mean_ap@5": 0.4133333333333333,
+    "q5_relevant_before_hard_neg": true
   },
   "hybrid_rerank": {
     "per_query": [
       {
         "id": "q1_attribute",
         "query": "A person in a bright yellow raincoat.",
-        "coverage@1": 1.0,
-        "coverage@5": 1.0,
+        "relevant": [
+          "189",
+          "404",
+          "6935",
+          "7943"
+        ],
+        "hard_negatives": [
+          "4177",
+          "898"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.0,
+        "recall@5": 0.0,
+        "ap@5": 0.0,
+        "diagnostic_coverage@5": 0.6666666666666666,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 6,
+          "first_hard_negative_rank": 7,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "8792",
+            "4706",
+            "4185",
+            "2007",
+            "6874",
+            "404",
+            "898",
+            "2550",
+            "4653",
+            "2557"
+          ]
+        },
         "top_results": [
           {
             "image_id": "8792",
             "path": "images/8792.jpg",
-            "score": 0.765935093164444,
+            "score": 0.29093509316444394,
             "dense_score": 0.0763358473777771,
-            "metadata_score": 1.0,
+            "metadata_score": 0.3333333333333333,
             "caption": "The image shows a young woman walking on a busy street in New York City. She is wearing a black coat, black pants, and brown boots. She has blonde hair and is carrying a brown bag. In the background, there is a yellow taxi cab parked on the side of the street. The street is lined with orange traffic cones and there are other people walking on the sidewalk. On the right side, there are buildings with shops and businesses. The sky is overcast and the overall mood of the image is busy and bustling.",
             "matched_attributes": {
               "colors": [
-                "yellow",
-                "orange",
                 "black",
-                "brown"
+                "brown",
+                "yellow",
+                "orange"
               ],
               "clothing": [
                 "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
                 "pants",
                 "boots",
-                "suit",
-                "tie",
                 "scarf"
               ],
               "scenes": [
                 "street"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
           {
             "image_id": "4706",
             "path": "images/4706.jpg",
-            "score": 0.7650195181369781,
+            "score": 0.2900195181369782,
             "dense_score": 0.07502788305282593,
-            "metadata_score": 1.0,
+            "metadata_score": 0.3333333333333333,
             "caption": "The image shows a young man standing on a sidewalk in front of a brick wall. He is wearing a green jacket, yellow pants, and black sneakers. He has a pair of glasses on and is holding a mobile phone to his ear. On the right side of the image, there is a white door with a red sign that reads \"Emergency Exit\". On the left side, there are two yellow bollards. The man appears to be deep in thought.",
             "matched_attributes": {
               "colors": [
-                "yellow",
-                "white",
-                "black",
                 "green",
+                "yellow",
+                "black",
+                "white",
                 "red"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
                 "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
                 "pants",
-                "boots",
-                "suit",
-                "tie",
-                "cardigan"
+                "sneakers",
+                "cardigan",
+                "blouse",
+                "shirt"
               ],
               "scenes": [
                 "office"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -2204,92 +2490,58 @@
           {
             "image_id": "4185",
             "path": "images/4185.jpg",
-            "score": 0.749711549282074,
+            "score": 0.274711549282074,
             "dense_score": 0.053159356117248535,
-            "metadata_score": 1.0,
+            "metadata_score": 0.3333333333333333,
             "caption": "The image shows a young man walking through a shopping mall. He is wearing a yellow tank top with the word \"The Body Shop\" written on it and black shorts. He has a black backpack slung over his shoulder and is carrying a blue bag in his left hand. He appears to be talking on his mobile phone and seems to be deep in thought. In the background, there are other shoppers and shops with colorful decorations. The mall has a high ceiling with a skylight.",
             "matched_attributes": {
               "colors": [
-                "yellow",
                 "black",
+                "yellow",
                 "blue"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
                 "shorts",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
                 "hat"
               ],
               "scenes": [
                 "home"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
             "image_id": "2007",
             "path": "images/2007.jpg",
-            "score": 0.7492935657501221,
+            "score": 0.27429356575012204,
             "dense_score": 0.05256223678588867,
-            "metadata_score": 1.0,
+            "metadata_score": 0.3333333333333333,
             "caption": "The image shows a young woman walking on a busy street. She is wearing a blue coat with a leopard print pattern and a yellow scarf around her neck. She has a blue bag slung over her shoulder and is holding a white phone in her hand. The street is lined with orange traffic cones and there are cars parked on the side of the road. The buildings on both sides of the street have shops and banners hanging from them. The woman appears to be deep in thought as she walks.",
             "matched_attributes": {
               "colors": [
+                "blue",
                 "yellow",
                 "orange",
-                "white",
-                "blue"
+                "white"
               ],
               "clothing": [
                 "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
                 "scarf",
-                "boots",
-                "suit",
-                "tie",
-                "sweater"
+                "sweater",
+                "jacket"
               ],
               "scenes": [
                 "street"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
             "image_id": "6874",
             "path": "images/6874.jpg",
-            "score": 0.7479243755340576,
+            "score": 0.27292437553405763,
             "dense_score": 0.05060625076293945,
-            "metadata_score": 1.0,
+            "metadata_score": 0.3333333333333333,
             "caption": "The image shows a man sitting on a bench, taking a photo of a city skyline. He is wearing a long coat and a cap, and is holding a pair of binoculars in his hands. The man is standing on a concrete wall, and there is a tree with yellow leaves in the foreground. In the background, there are several buildings and a bridge over a river. The sky is cloudy, and the overall mood of the image is peaceful and serene.",
             "matched_attributes": {
               "colors": [
@@ -2297,29 +2549,12 @@
               ],
               "clothing": [
                 "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
                 "hat"
               ],
               "scenes": [
                 "street"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           }
         ]
@@ -2327,8 +2562,43 @@
       {
         "id": "q2_contextual",
         "query": "Professional business attire inside a modern office.",
-        "coverage@1": 1.0,
-        "coverage@5": 1.0,
+        "relevant": [
+          "1204",
+          "648",
+          "655",
+          "706",
+          "724",
+          "973",
+          "984",
+          "999"
+        ],
+        "hard_negatives": [
+          "13189",
+          "3661",
+          "909"
+        ],
+        "precision@1": 0.0,
+        "precision@5": 0.4,
+        "recall@5": 0.25,
+        "ap@5": 0.2333333333333333,
+        "diagnostic_coverage@5": 0.6666666666666667,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 2,
+          "first_hard_negative_rank": null,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "1986",
+            "648",
+            "655",
+            "1529",
+            "733",
+            "144",
+            "910",
+            "3220",
+            "1083",
+            "4483"
+          ]
+        },
         "top_results": [
           {
             "image_id": "1986",
@@ -2339,198 +2609,132 @@
             "caption": "The image shows a young woman standing in front of a large abstract painting. She is wearing a black and white striped jacket, black pants, and black shoes. She has long dark hair and is looking directly at the camera with a serious expression. The painting behind her is a large, colorful abstract painting with a mix of blues, greens, and yellows. The frame of the painting is made of metal and has a silver border. The floor is tiled and there is a chandelier hanging from the ceiling.",
             "matched_attributes": {
               "colors": [
+                "black",
                 "silver",
-                "white",
-                "black"
+                "white"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
                 "pants",
-                "boots",
-                "suit",
-                "tie",
-                "cardigan"
+                "jacket",
+                "cardigan",
+                "jumpsuit"
               ],
               "scenes": [
                 "office"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
           {
             "image_id": "648",
             "path": "images/648.jpg",
-            "score": 0.7436840772628784,
-            "dense_score": 0.06240582466125488,
+            "score": 0.743684035539627,
+            "dense_score": 0.06240576505661011,
             "metadata_score": 1.0,
             "caption": "The image shows a young man standing on a stone staircase in front of a white building with a large window. He is wearing a grey suit with a blue tie, black trousers, and brown shoes. He has a black pocket square on his lapel and is holding a small white purse in his left hand. His hair is styled in a short, neat cut and he is looking off to the side with a serious expression on his face.",
             "matched_attributes": {
               "colors": [
+                "gray",
+                "blue",
+                "black",
                 "white",
-                "black",
-                "brown",
-                "blue",
-                "gray"
+                "brown"
               ],
               "clothing": [
-                "coat",
-                "pants",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "boots",
                 "suit",
-                "tie"
+                "tie",
+                "pants",
+                "jacket",
+                "blouse",
+                "shirt"
               ],
               "scenes": [
                 "office"
               ],
               "styles": [
-                "formal",
-                "casual"
-              ]
-            }
-          },
-          {
-            "image_id": "4869",
-            "path": "images/4869.jpg",
-            "score": 0.7411974966526031,
-            "dense_score": 0.05885356664657593,
-            "metadata_score": 1.0,
-            "caption": "The image shows a young woman standing in front of a blue metal archway with potted plants on either side. She is wearing a red cardigan over a black leather skirt and black high heels. She has long dark hair and is posing with one hand on her hip and the other resting on her thigh. The archway is made of metal and has intricate designs on it. The background is a stone wall with a stone archway. The overall mood of the image is casual and relaxed.",
-            "matched_attributes": {
-              "colors": [
-                "black",
-                "blue",
-                "red"
-              ],
-              "clothing": [
-                "coat",
-                "cardigan",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "heels",
-                "suit",
-                "tie"
-              ],
-              "scenes": [
-                "office"
-              ],
-              "styles": [
-                "casual",
                 "formal"
               ]
             }
           },
           {
-            "image_id": "1204",
-            "path": "images/1204.jpg",
-            "score": 0.7339818358421326,
-            "dense_score": 0.0485454797744751,
+            "image_id": "655",
+            "path": "images/655.jpg",
+            "score": 0.7397310396035512,
+            "dense_score": 0.04485386610031128,
             "metadata_score": 1.0,
-            "caption": "The image shows a man standing on a red carpet at an event. He is wearing a navy blue suit with a white shirt and a maroon tie. He has short dark hair and is smiling at the camera. Behind him, there is a white backdrop with the words \"InStyle\" and \"Nespresso\" written in black. The man is also wearing black shoes.",
+            "caption": "The image shows a young man in a black suit and tie standing behind a glass display case in a store. He is holding a small bottle of perfume in his right hand and appears to be looking at the camera with a serious expression. The display case is made of clear glass and has several small bottles of perfume arranged neatly on it. The man is standing in front of a mirror and there are other mannequins in the background. The store has a modern and elegant design with white walls and a high ceiling.",
             "matched_attributes": {
               "colors": [
-                "white",
                 "black",
-                "blue",
-                "red"
+                "white"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
                 "suit",
-                "tie"
+                "tie",
+                "jacket",
+                "blouse",
+                "shirt"
               ],
               "scenes": [
                 "office"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "elegant",
+                "formal"
               ]
             }
           },
           {
-            "image_id": "4653",
-            "path": "images/4653.jpg",
-            "score": 0.7339281797409057,
-            "dense_score": 0.048468828201293945,
-            "metadata_score": 1.0,
-            "caption": "The image is a full-length portrait of a young woman posing in a casual outfit. She is standing in front of a white background and is smiling at the camera. The woman is wearing a yellow cardigan over a blue button-down shirt, light pink trousers, and beige flats. She has a beige backpack slung over her shoulder and is holding a small white purse in her left hand. Her hair is styled in loose waves and she is wearing minimal makeup. The overall mood of the image is happy and relaxed.",
+            "image_id": "1529",
+            "path": "images/1529.jpg",
+            "score": 0.33532129724820453,
+            "dense_score": 0.07426851987838745,
+            "metadata_score": 0.5,
+            "caption": "The image shows a young woman standing in a room with a modern design. She is wearing a gray sweater, a black skirt, and black tights. She has long blonde hair and is holding a mobile phone in her hand. On the left side of the image, there is a white kiosk with a black stand and a pair of headphones on it. The kiosk appears to be in a conference room with beige walls and a carpeted floor.",
             "matched_attributes": {
               "colors": [
-                "yellow",
+                "gray",
+                "black",
                 "white",
-                "beige",
-                "blue",
-                "pink"
+                "beige"
               ],
               "clothing": [
-                "shirt",
-                "coat",
-                "cardigan",
-                "pants",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "dress",
-                "skirt",
-                "jeans",
-                "boots",
-                "suit",
-                "tie"
+                "sweater",
+                "skirt"
               ],
               "scenes": [
                 "office"
               ],
+              "styles": []
+            }
+          },
+          {
+            "image_id": "733",
+            "path": "images/733.jpg",
+            "score": 0.33244081735610964,
+            "dense_score": 0.08205831050872803,
+            "metadata_score": 0.5,
+            "caption": "The image is a portrait of a woman standing on a bridge. She is wearing a grey plaid blazer over a white collared shirt and blue jeans. She has blonde hair and is smiling at the camera. The background is blurred, but it appears to be an urban area with tall buildings. The woman is standing with one hand on her hip and the other resting on her thigh. The overall mood of the image is confident and relaxed.",
+            "matched_attributes": {
+              "colors": [
+                "blue",
+                "white",
+                "gray"
+              ],
+              "clothing": [
+                "jeans",
+                "blazer",
+                "shirt",
+                "jacket",
+                "blouse",
+                "pants"
+              ],
+              "scenes": [
+                "street"
+              ],
               "styles": [
-                "minimal",
-                "casual",
                 "formal"
               ]
             }
@@ -2540,121 +2744,84 @@
       {
         "id": "q3_complex",
         "query": "Someone wearing a blue shirt sitting on a park bench.",
-        "coverage@1": 1.0,
-        "coverage@5": 1.0,
+        "relevant": [
+          "3482",
+          "665"
+        ],
+        "hard_negatives": [
+          "192",
+          "5398",
+          "909"
+        ],
+        "precision@1": 1.0,
+        "precision@5": 0.4,
+        "recall@5": 1.0,
+        "ap@5": 1.0,
+        "diagnostic_coverage@5": 0.85,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 1,
+          "first_hard_negative_rank": null,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "665",
+            "3482",
+            "3472",
+            "4939",
+            "2371",
+            "854",
+            "1123",
+            "17063",
+            "942",
+            "868"
+          ]
+        },
         "top_results": [
           {
             "image_id": "665",
             "path": "images/665.jpg",
-            "score": 0.8001129942280906,
+            "score": 0.8651129942280905,
             "dense_score": 0.10220223665237427,
-            "metadata_score": 1.0,
+            "metadata_score": 0.75,
             "caption": "The image shows a young woman standing in a park with her arms crossed. She is wearing a blue blouse and blue jeans. She has long dark hair and is looking directly at the camera with a serious expression. In the background, there are trees and people sitting on benches, enjoying the scenery. The sky is overcast and the overall mood of the image is peaceful and serene.",
             "matched_attributes": {
               "colors": [
                 "blue"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
                 "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "shirt",
+                "pants"
               ],
               "scenes": [
                 "park"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
             "image_id": "3482",
             "path": "images/3482.jpg",
-            "score": 0.7811962945120675,
+            "score": 0.8461962945120676,
             "dense_score": 0.08538246154785156,
-            "metadata_score": 1.0,
+            "metadata_score": 0.75,
             "caption": "The image is a portrait of a young woman sitting on the ground in a park. She is wearing a blue t-shirt with a graphic design on it, black leggings, and black sneakers. She has long dark hair and is smiling at the camera. Her hands are resting on her head and she appears to be deep in thought. The background is filled with trees and greenery, and there is a stone wall on the right side of the image. The overall mood of the photo is peaceful and serene.",
             "matched_attributes": {
               "colors": [
-                "black",
-                "blue"
+                "blue",
+                "black"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
                 "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
+                "sneakers",
                 "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
-                "shorts"
-              ],
-              "scenes": [
-                "park"
-              ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
-            }
-          },
-          {
-            "image_id": "3818",
-            "path": "images/3818.jpg",
-            "score": 0.7748612863676889,
-            "dense_score": 0.0763324499130249,
-            "metadata_score": 1.0,
-            "caption": "The image shows a young woman sitting on a paved path in a park. She is wearing a denim tank top, denim shorts, and white sneakers. Her long brown hair is styled in loose waves and she is looking off to the side with a thoughtful expression on her face. The path is lined with trees on both sides and the ground is covered in fallen leaves. The sky is blue and the overall mood of the image is peaceful and serene.",
-            "matched_attributes": {
-              "colors": [
-                "white",
-                "brown",
-                "blue"
-              ],
-              "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
                 "shorts",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "dress"
               ],
               "scenes": [
                 "park"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -2662,84 +2829,84 @@
           {
             "image_id": "3472",
             "path": "images/3472.jpg",
-            "score": 0.7639750225203378,
+            "score": 0.8289750225203378,
             "dense_score": 0.06078064441680908,
-            "metadata_score": 1.0,
+            "metadata_score": 0.75,
             "caption": "The image shows a young woman sitting on a grassy lawn in a park. She is wearing a green cardigan, a white blouse, black tights, and yellow flats. She has a red handbag on her lap and is looking directly at the camera with a slight smile on her face. In the background, there are other people sitting and lying on the grass, some of them are sitting on benches and others are standing. There are trees and parked cars visible in the distance. The sky is blue and the weather appears to be sunny and pleasant.",
             "matched_attributes": {
               "colors": [
-                "yellow",
-                "white",
-                "black",
                 "green",
+                "white",
+                "yellow",
+                "black",
                 "blue",
                 "red"
               ],
               "clothing": [
-                "coat",
                 "cardigan",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
                 "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "shirt"
               ],
               "scenes": [
                 "park"
               ],
-              "styles": [
-                "formal",
-                "casual"
-              ]
+              "styles": []
             }
           },
           {
             "image_id": "4939",
             "path": "images/4939.jpg",
-            "score": 0.763392026935305,
+            "score": 0.828392026935305,
             "dense_score": 0.049743711948394775,
-            "metadata_score": 1.0,
+            "metadata_score": 0.75,
             "caption": "The image shows a young woman sitting on a stone wall in a park. She is wearing a gray cardigan, blue jeans, and black knee-high boots. She has long dark hair and is looking directly at the camera with a slight smile on her face. The background is blurred, but it appears to be a park with trees and greenery. The overall mood of the image is relaxed and casual.",
             "matched_attributes": {
               "colors": [
-                "black",
+                "gray",
                 "blue",
-                "gray"
+                "black"
               ],
               "clothing": [
-                "coat",
                 "cardigan",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
                 "boots",
-                "suit",
-                "tie"
+                "hoodie",
+                "t-shirt",
+                "shirt"
               ],
               "scenes": [
                 "park"
               ],
               "styles": [
-                "casual",
-                "formal"
+                "casual"
               ]
+            }
+          },
+          {
+            "image_id": "2371",
+            "path": "images/2371.jpg",
+            "score": 0.8207160718100411,
+            "dense_score": 0.04898214340209961,
+            "metadata_score": 0.75,
+            "caption": "The image shows a young woman sitting on the ground in front of a large concrete structure. She is wearing a green long-sleeved shirt, blue jeans, and black boots. She has long red hair and is smiling at the camera. The structure appears to be a modern building with a sloping roof and a metal gate on the right side. The ground is made of concrete and there is a red dumpster on the left side of the image. The sky is overcast and the overall mood of the photo is peaceful and serene.",
+            "matched_attributes": {
+              "colors": [
+                "blue",
+                "black",
+                "green",
+                "red"
+              ],
+              "clothing": [
+                "jeans",
+                "boots",
+                "shirt",
+                "sweater",
+                "pants"
+              ],
+              "scenes": [
+                "park"
+              ],
+              "styles": []
             }
           }
         ]
@@ -2747,8 +2914,40 @@
       {
         "id": "q4_style",
         "query": "Casual weekend outfit for a city walk.",
-        "coverage@1": 1.0,
-        "coverage@5": 1.0,
+        "relevant": [
+          "13189",
+          "2098",
+          "3661",
+          "8792",
+          "909"
+        ],
+        "hard_negatives": [
+          "1204",
+          "724",
+          "901"
+        ],
+        "precision@1": 1.0,
+        "precision@5": 0.4,
+        "recall@5": 0.4,
+        "ap@5": 0.4,
+        "diagnostic_coverage@5": 0.8266666666666665,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 1,
+          "first_hard_negative_rank": null,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "2098",
+            "909",
+            "251",
+            "14202",
+            "341",
+            "791",
+            "5966",
+            "9278",
+            "8566",
+            "1456"
+          ]
+        },
         "top_results": [
           {
             "image_id": "2098",
@@ -2759,75 +2958,24 @@
             "caption": "The image shows a young woman standing on a cobblestone street in a European city. She is wearing a beige cardigan with black and white geometric patterns, grey jeans, and black ankle boots. She has a brown crossbody bag slung over her shoulder and is smiling at the camera. In the background, there are other people walking on the street and buildings on both sides. The sky is overcast and the overall mood of the image is casual and relaxed.",
             "matched_attributes": {
               "colors": [
+                "beige",
+                "gray",
                 "white",
                 "black",
-                "brown",
-                "beige",
-                "gray"
+                "brown"
               ],
               "clothing": [
-                "coat",
                 "cardigan",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
+                "jeans",
+                "boots",
                 "blouse",
                 "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "pants"
               ],
               "scenes": [
                 "street"
               ],
               "styles": [
-                "casual",
-                "formal"
-              ]
-            }
-          },
-          {
-            "image_id": "8566",
-            "path": "images/8566.jpg",
-            "score": 0.7792681276798248,
-            "dense_score": 0.11324018239974976,
-            "metadata_score": 1.0,
-            "caption": "The image shows a young woman standing on a busy street. She is wearing a yellow sleeveless top, blue jeans, and flip-flops. She has a brown leather handbag slung over her shoulder and is smiling at the camera. Behind her, there are several motorbikes and people on the street, some of whom are wearing helmets. The street is lined with trees and buildings, and there is a traffic light visible in the background.",
-            "matched_attributes": {
-              "colors": [
-                "yellow",
-                "brown",
-                "blue"
-              ],
-              "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie",
-                "shorts"
-              ],
-              "scenes": [
-                "street"
-              ],
-              "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -2844,68 +2992,17 @@
                 "blue"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
                 "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
-                "boots",
                 "heels",
-                "suit",
-                "tie"
-              ],
-              "scenes": [
-                "street"
-              ],
-              "styles": [
-                "casual",
-                "formal"
-              ]
-            }
-          },
-          {
-            "image_id": "4019",
-            "path": "images/4019.jpg",
-            "score": 0.7739581346511841,
-            "dense_score": 0.10565447807312012,
-            "metadata_score": 1.0,
-            "caption": "The image shows a young woman walking on a busy street. She is wearing a gray cardigan over a striped tank top and denim shorts. She has a brown crossbody bag slung over her shoulder and is holding a piece of paper in her hand. The woman has long dark hair and is looking off to the side with a serious expression on her face. In the background, there are other people walking on the sidewalk and a building with a sign that reads \"Bank of America\". There are also cars parked on the side of the street and trees lining the street.",
-            "matched_attributes": {
-              "colors": [
-                "brown",
-                "gray"
-              ],
-              "clothing": [
-                "coat",
-                "cardigan",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
                 "blouse",
-                "shorts",
                 "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "pants"
               ],
               "scenes": [
                 "street"
               ],
               "styles": [
-                "formal",
                 "casual"
               ]
             }
@@ -2919,32 +3016,72 @@
             "caption": "The image shows a young woman walking on a street. She is wearing a light blue denim jacket, ripped blue jeans, and white sneakers. She has a black crossbody bag slung over her shoulder and is wearing sunglasses. Her blonde hair is styled in loose waves and she is looking down at her phone. In the background, there are other people walking on the sidewalk and a bus stop. There is also a sign that reads \"Your Story\" and a tree on the left side of the image.",
             "matched_attributes": {
               "colors": [
+                "blue",
                 "white",
-                "black",
-                "blue"
+                "black"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
                 "jeans",
-                "pants",
-                "boots",
-                "suit",
-                "tie"
+                "sneakers",
+                "jacket",
+                "hoodie",
+                "t-shirt",
+                "shirt"
               ],
               "scenes": [
                 "street"
               ],
               "styles": [
-                "formal",
+                "casual"
+              ]
+            }
+          },
+          {
+            "image_id": "14202",
+            "path": "images/14202.jpg",
+            "score": 0.7721148645877838,
+            "dense_score": 0.08873552083969116,
+            "metadata_score": 1.0,
+            "caption": "The image shows a young woman standing on a sidewalk on a busy street. She is wearing a blue and white patterned romper and strappy sandals. She has blonde hair and is looking down at her phone. The street is lined with shops and restaurants, and there is a trash can on the right side of the image. The sky is overcast and the overall mood of the photo is casual and relaxed.",
+            "matched_attributes": {
+              "colors": [
+                "white",
+                "blue"
+              ],
+              "clothing": [
+                "jumpsuit"
+              ],
+              "scenes": [
+                "street"
+              ],
+              "styles": [
+                "casual",
+                "formal"
+              ]
+            }
+          },
+          {
+            "image_id": "341",
+            "path": "images/341.jpg",
+            "score": 0.7699108755588532,
+            "dense_score": 0.08558696508407593,
+            "metadata_score": 1.0,
+            "caption": "The image shows a young woman standing on a sidewalk next to a black railing. She is wearing a purple sleeveless top and denim shorts. She has long blonde hair and is holding a cup of coffee in her hand. The woman appears to be looking down at her phone and seems to be deep in thought. In the background, there are other people walking on the sidewalk and a trash can. The overall mood of the image is casual and relaxed.",
+            "matched_attributes": {
+              "colors": [
+                "purple",
+                "black"
+              ],
+              "clothing": [
+                "shorts",
+                "hoodie",
+                "t-shirt",
+                "shirt"
+              ],
+              "scenes": [
+                "street"
+              ],
+              "styles": [
                 "casual"
               ]
             }
@@ -2954,212 +3091,191 @@
       {
         "id": "q5_compositional",
         "query": "A red tie and a white shirt in a formal setting.",
-        "coverage@1": 1.0,
-        "coverage@5": 0.975,
+        "relevant": [
+          "1204",
+          "901"
+        ],
+        "hard_negatives": [
+          "1081",
+          "706",
+          "724",
+          "973"
+        ],
+        "precision@1": 1.0,
+        "precision@5": 0.2,
+        "recall@5": 0.5,
+        "ap@5": 0.5,
+        "diagnostic_coverage@5": 0.7,
+        "hard_negative_analysis": {
+          "first_relevant_rank": 1,
+          "first_hard_negative_rank": 2,
+          "relevant_before_hard_neg": true,
+          "top_k_ids": [
+            "1204",
+            "706",
+            "724",
+            "973",
+            "1081",
+            "910",
+            "1002",
+            "655",
+            "3220",
+            "343"
+          ]
+        },
         "top_results": [
           {
             "image_id": "1204",
             "path": "images/1204.jpg",
-            "score": 0.7566275179386139,
+            "score": 1.0341275179386138,
             "dense_score": 0.04518216848373413,
-            "metadata_score": 1.0,
+            "metadata_score": 0.8,
             "caption": "The image shows a man standing on a red carpet at an event. He is wearing a navy blue suit with a white shirt and a maroon tie. He has short dark hair and is smiling at the camera. Behind him, there is a white backdrop with the words \"InStyle\" and \"Nespresso\" written in black. The man is also wearing black shoes.",
             "matched_attributes": {
               "colors": [
-                "white",
-                "black",
                 "blue",
-                "red"
+                "white",
+                "red",
+                "black"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
                 "suit",
-                "tie"
+                "shirt",
+                "tie",
+                "jacket",
+                "blouse",
+                "pants"
               ],
               "scenes": [
-                "office"
+                "formal"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
           {
             "image_id": "706",
             "path": "images/706.jpg",
-            "score": 0.740309637784958,
+            "score": 0.8578096377849579,
             "dense_score": 0.021870911121368408,
-            "metadata_score": 1.0,
+            "metadata_score": 0.7,
             "caption": "The image shows a man standing on a black carpet at an event. He is wearing a black suit with a white shirt and a patterned tie. He has short grey hair and is smiling at the camera. Behind him, there is a white backdrop with various logos and sponsors. The man appears to be posing for a photo on the red carpet.",
             "matched_attributes": {
               "colors": [
-                "white",
                 "black",
+                "white",
                 "gray",
                 "red"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
                 "suit",
-                "tie"
+                "shirt",
+                "tie",
+                "jacket",
+                "blouse",
+                "pants"
               ],
               "scenes": [
-                "office"
+                "formal"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
           {
             "image_id": "724",
             "path": "images/724.jpg",
-            "score": 0.731362372636795,
+            "score": 0.848862372636795,
             "dense_score": 0.02694624662399292,
-            "metadata_score": 1.0,
+            "metadata_score": 0.7,
             "caption": "The image shows a man standing on a red carpet at an event. He is wearing a black suit with a white shirt, black tie, and black shoes. He has a white pocket square on his lapel and is bald. The background is black with the words \"Grace Monaco\" and the logo of the event. The man is posing with his hands in his pockets and is looking directly at the camera with a serious expression.",
             "matched_attributes": {
               "colors": [
-                "white",
                 "black",
+                "white",
                 "red"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
                 "suit",
-                "tie"
+                "shirt",
+                "tie",
+                "jacket",
+                "blouse",
+                "pants"
               ],
               "scenes": [
-                "office"
+                "formal"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
           {
-            "image_id": "5256",
-            "path": "images/5256.jpg",
-            "score": 0.7156640410423278,
-            "dense_score": 0.004520058631896973,
-            "metadata_score": 1.0,
-            "caption": "The image shows a young woman standing in front of a train at a train station. She is wearing a red jumpsuit with a gold belt and a pair of sunglasses. She has curly black hair and is holding a phone to her ear with one hand. The train is white with yellow stripes and has the words \"Regional Train\" written on the side. The woman is posing with her hand on her hip and is looking off to the side with a serious expression on her face.",
+            "image_id": "973",
+            "path": "images/973.jpg",
+            "score": 0.7601200628280641,
+            "dense_score": 0.025171518325805664,
+            "metadata_score": 0.6,
+            "caption": "The image shows a man standing on a red carpet at an event. He is wearing a black suit with a white shirt and black trousers. He has short, dark hair and is wearing glasses. The man is looking directly at the camera with a serious expression on his face. In the background, there is a black backdrop with the words \"Jack Reacher\" written in white.",
             "matched_attributes": {
               "colors": [
-                "yellow",
-                "white",
                 "black",
-                "gold",
+                "white",
                 "red"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
-                "shirt",
-                "dress",
-                "skirt",
-                "jeans",
-                "pants",
-                "boots",
                 "suit",
-                "tie"
+                "shirt",
+                "pants",
+                "jacket",
+                "blouse"
               ],
               "scenes": [
-                "office"
+                "formal"
               ],
               "styles": [
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           },
           {
-            "image_id": "655",
-            "path": "images/655.jpg",
-            "score": 0.687399399280548,
-            "dense_score": 0.017713427543640137,
-            "metadata_score": 0.875,
-            "caption": "The image shows a young man in a black suit and tie standing behind a glass display case in a store. He is holding a small bottle of perfume in his right hand and appears to be looking at the camera with a serious expression. The display case is made of clear glass and has several small bottles of perfume arranged neatly on it. The man is standing in front of a mirror and there are other mannequins in the background. The store has a modern and elegant design with white walls and a high ceiling.",
+            "image_id": "1081",
+            "path": "images/1081.jpg",
+            "score": 0.7529665696620942,
+            "dense_score": 0.014952242374420166,
+            "metadata_score": 0.6,
+            "caption": "The image shows a young man walking down a runway. He is wearing a black tuxedo with a white shirt and a black bow tie. He has a serious expression on his face and is looking directly at the camera. The runway is black and there are people sitting on either side of the runway, watching the man. The background is a plain white wall.",
             "matched_attributes": {
               "colors": [
                 "white",
                 "black"
               ],
               "clothing": [
-                "coat",
-                "sneakers",
-                "t-shirt",
-                "jacket",
-                "blazer",
-                "hoodie",
-                "blouse",
                 "shirt",
-                "dress",
-                "skirt",
-                "jeans",
+                "tie",
+                "jacket",
+                "blouse",
                 "pants",
-                "boots",
-                "suit",
-                "tie"
+                "scarf"
               ],
               "scenes": [
-                "office"
+                "runway"
               ],
               "styles": [
-                "elegant",
-                "formal",
-                "casual"
+                "formal"
               ]
             }
           }
         ]
       }
     ],
-    "mean_coverage@1": 1.0,
-    "mean_coverage@5": 0.9949999999999999
+    "mean_precision@1": 0.6,
+    "mean_precision@5": 0.28,
+    "mean_recall@5": 0.43,
+    "mean_ap@5": 0.42666666666666664,
+    "q5_relevant_before_hard_neg": true
   }
 }
