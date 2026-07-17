@@ -1,5 +1,5 @@
 {
-  "_notes": "Hand-labeled relevance for the five assignment judge queries against the 800-image Fashionpedia subset. Labels were assigned by inspecting Florence captions and verifying key images visually. relevant = acceptable top results; hard_negatives = near-misses that should rank below true matches (color/garment swaps or missing key attributes).",
+  "_notes": "Hand-labeled relevance for the five assignment judge queries. IMPORTANT: image IDs below are for the Fashionpedia subset. After switching to --source mixed (CUHK-PEDES+COCO), re-label against the new corpus before trusting P/R numbers. relevant = acceptable top results; hard_negatives = near-misses that should rank below true matches.",
   "queries": [
     {
       "id": "q1_attribute",

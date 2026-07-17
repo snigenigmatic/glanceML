@@ -1,8 +1,11 @@
 # Default configuration for multimodal fashion retrieval
 
 dataset:
-  name: fashionpedia
+  # Sources: fashionpedia | cuhk_pedes | mixed (PEDES attributes + COCO scenes)
+  name: mixed
   target_size: 800
+  pedes_n: 500
+  coco_n: 300
   image_size: 512
   seed: 42
   hf_dataset: detection-datasets/fashionpedia

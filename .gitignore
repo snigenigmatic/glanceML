@@ -223,6 +223,7 @@ data/raw/
 data/chroma/
 data/metadata.json
 data/index_meta.json
+data_mixed_smoke/
 # Keep lightweight eval JSON in git; ignore bulky regenerated dumps
 eval/results/*
 !eval/results/*.json

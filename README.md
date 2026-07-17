@@ -30,22 +30,26 @@ REPORT.md         Approaches, decisions, future work (for PDF export)
 pip install modal
 modal setup                          # browser auth once
 
-# End-to-end: dataset → index → eval → sample query
-modal run modal_app.py --stage all --target-size 800
+# Recommended corpus: CUHK-PEDES (clothing captions) + COCO people/scenes
+modal run modal_app.py --stage prepare --source mixed --pedes-n 500 --coco-n 300
+modal run modal_app.py --stage index
+modal run modal_app.py --stage eval_prep   # repair metadata + CLIP baseline
+modal run modal_app.py --stage eval
 
-# Or step-by-step
-modal run modal_app.py::prepare_dataset --target-size 800
-modal run modal_app.py::build_index
-modal run modal_app.py::evaluate
-modal run modal_app.py::query --query-text "A person in a bright yellow raincoat." --top-k 5
+# Other sources: --source cuhk_pedes | fashionpedia
+# Full pipeline:
+modal run modal_app.py --stage all --source mixed
 
-# Interactive Gradio demo (ephemeral URL while this process runs)
+modal run modal_app.py::query --query-text "A woman in a black leather jacket on the street." --top-k 5
+
+# Interactive Gradio demo
 modal serve modal_app.py
-# Deploy persistently:
 modal deploy modal_app.py
 ```
 
 Data and the Chroma index live on the Modal volume `glance-fashion-data` (`/data`).
+
+**Why mixed?** Fashionpedia alone is runway-skewed (weak office/park/rain queries). PEDES supplies attribute-rich person captions; COCO supplies people in park/street/home/office-like contexts.
 
 The Gradio demo is pinned to **one container** (`max_containers=1`) with concurrent inputs so Gradio’s in-memory queue sessions stay sticky (avoids `404: Session not found`).
 

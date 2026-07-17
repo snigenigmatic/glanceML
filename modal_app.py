@@ -86,23 +86,62 @@ def _write_runtime_config(data_root: Path = DATA_ROOT) -> Path:
 @app.function(
     image=ml_image,
     volumes={str(DATA_ROOT): volume},
-    timeout=60 * 60,
+    timeout=60 * 90,
     cpu=4,
     memory=8192,
 )
-def prepare_dataset(target_size: int = 800, image_size: int = 512, seed: int = 42):
-    """Download Fashionpedia subset onto the Modal volume."""
+def prepare_dataset(
+    source: str = "mixed",
+    target_size: int = 800,
+    pedes_n: int = 500,
+    coco_n: int = 300,
+    image_size: int = 512,
+    seed: int = 42,
+):
+    """Prepare corpus on the Modal volume.
+
+    source:
+      - mixed: CUHK-PEDES (attributes) + COCO people/scenes (recommended)
+      - cuhk_pedes: PEDES only
+      - fashionpedia: original runway/street Fashionpedia subset
+    """
     import sys
 
     sys.path.insert(0, "/root")
-    from src.dataset.prepare import prepare_fashionpedia_subset
 
-    meta_path = prepare_fashionpedia_subset(
-        output_dir=DATA_ROOT,
-        target_size=target_size,
-        image_size=image_size,
-        seed=seed,
-    )
+    if source == "mixed":
+        from src.dataset.prepare_mixed import prepare_mixed_corpus
+
+        # Keep total near target_size if caller only set target_size
+        if pedes_n + coco_n != target_size and target_size != 800:
+            pedes_n = int(target_size * 0.625)
+            coco_n = target_size - pedes_n
+        meta_path = prepare_mixed_corpus(
+            output_dir=DATA_ROOT,
+            pedes_n=pedes_n,
+            coco_n=coco_n,
+            image_size=image_size,
+            seed=seed,
+        )
+    elif source == "cuhk_pedes":
+        from src.dataset.prepare_mixed import prepare_mixed_corpus
+
+        meta_path = prepare_mixed_corpus(
+            output_dir=DATA_ROOT,
+            pedes_n=target_size,
+            coco_n=0,
+            image_size=image_size,
+            seed=seed,
+        )
+    else:
+        from src.dataset.prepare import prepare_fashionpedia_subset
+
+        meta_path = prepare_fashionpedia_subset(
+            output_dir=DATA_ROOT,
+            target_size=target_size,
+            image_size=image_size,
+            seed=seed,
+        )
     volume.commit()
     return str(meta_path)
 
@@ -275,19 +314,29 @@ def demo():
 @app.local_entrypoint()
 def main(
     stage: str = "all",
+    source: str = "mixed",
     query_text: str = "A person in a bright yellow raincoat.",
     target_size: int = 800,
+    pedes_n: int = 500,
+    coco_n: int = 300,
     top_k: int = 5,
 ):
     """
     One-shot orchestration from your laptop:
-      modal run modal_app.py --stage all
-      modal run modal_app.py --stage eval
+      modal run modal_app.py --stage prepare --source mixed
+      modal run modal_app.py --stage all --source mixed
       modal run modal_app.py --stage query --query-text "Casual weekend outfit for a city walk."
     """
     if stage in {"prepare", "all"}:
-        print("→ prepare_dataset")
-        print(prepare_dataset.remote(target_size=target_size))
+        print("→ prepare_dataset", source)
+        print(
+            prepare_dataset.remote(
+                source=source,
+                target_size=target_size,
+                pedes_n=pedes_n,
+                coco_n=coco_n,
+            )
+        )
     if stage in {"index", "all"}:
         print("→ build_index")
         print(build_index.remote())
