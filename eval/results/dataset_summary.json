@@ -1,0 +1,30 @@
+{
+  "dataset": "fashionpedia-subset",
+  "count": 800,
+  "image_size": 512,
+  "clothing_histogram": {
+    "blouse": 73,
+    "skirt": 66,
+    "pants": 73,
+    "coat": 73,
+    "unknown": 37,
+    "cardigan": 72,
+    "scarf": 47,
+    "t-shirt": 72,
+    "hat": 10,
+    "dress": 72,
+    "shorts": 61,
+    "jacket": 72,
+    "sweater": 72
+  },
+  "color_histogram": {
+    "unknown": 800
+  },
+  "scene_histogram": {
+    "office": 219,
+    "street": 201,
+    "urban": 43,
+    "home": 156,
+    "park": 181
+  }
+}

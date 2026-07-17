@@ -223,7 +223,9 @@ data/raw/
 data/chroma/
 data/metadata.json
 data/index_meta.json
-eval/results/
+# Keep lightweight eval JSON in git; ignore bulky regenerated dumps
+eval/results/*
+!eval/results/*.json
 *.pt
 *.bin
 .cache/
