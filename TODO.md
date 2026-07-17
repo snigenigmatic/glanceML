@@ -2,36 +2,36 @@
 
 ## High Priority
 
-- [ ] Download dataset
-- [ ] Clean dataset
-- [ ] Build indexer
-- [ ] Generate embeddings
-- [ ] Extract metadata
-- [ ] Create ChromaDB
+- [x] Download dataset
+- [x] Clean dataset
+- [x] Build indexer
+- [x] Generate embeddings
+- [x] Extract metadata
+- [x] Create ChromaDB
 
 ## Retrieval
 
-- [ ] Dense search
-- [ ] Metadata scoring
-- [ ] Weighted fusion
-- [ ] Optional reranker
+- [x] Dense search
+- [x] Metadata scoring
+- [x] Weighted fusion
+- [x] Optional reranker
 
 ## Evaluation
 
-- [ ] Precision@5
-- [ ] Recall@5
-- [ ] Baseline comparison
-- [ ] Ablation study
+- [x] Precision@5 (attribute recall proxy)
+- [x] Recall@5 (attribute recall proxy)
+- [x] Baseline comparison
+- [x] Ablation study
 
 ## Demo
 
-- [ ] Gradio UI
-- [ ] Example queries
-- [ ] README
+- [x] Gradio UI
+- [x] Example queries
+- [x] README
 
 ## Final Submission
 
 - [ ] PDF
-- [ ] GitHub cleanup
+- [x] GitHub cleanup
 - [ ] Screenshots
-- [ ] Verify reproducibility
+- [x] Verify reproducibility (Modal + local CLI)

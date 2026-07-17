@@ -1,0 +1,64 @@
+dataset:
+  num_images: 800
+  min_images: 500
+  image_size: 224
+  seed: 42
+  # Fashionpedia S3 sources
+  train_images_url: https://s3.amazonaws.com/ifashionist-dataset/images/train2020.zip
+  val_test_images_url: https://s3.amazonaws.com/ifashionist-dataset/images/val_test2020.zip
+  train_annotations_url: https://s3.amazonaws.com/ifashionist-dataset/annotations/instances_attributes_train2020.json
+  val_annotations_url: https://s3.amazonaws.com/ifashionist-dataset/annotations/instances_attributes_val2020.json
+
+models:
+  embedding_model: Marqo/marqo-fashionSigLIP
+  baseline_model: openai/clip-vit-base-patch32
+  vlm_model: microsoft/Florence-2-base
+  vlm_task: <MORE_DETAILED_CAPTION>
+
+retrieval:
+  semantic_weight: 0.7
+  metadata_weight: 0.3
+  initial_candidates: 50
+  rerank_candidates: 20
+  top_k: 5
+  collection_name: fashion_images
+
+paths:
+  data_dir: data
+  images_dir: data/images
+  metadata_file: data/metadata.json
+  index_dir: data/index
+  chroma_dir: data/index/chroma
+
+evaluation:
+  queries:
+    - id: attr_specific
+      query: "A person in a bright yellow raincoat."
+      expected_attributes:
+        colors: [yellow]
+        clothing: [raincoat, coat, jacket]
+    - id: contextual_place
+      query: "Professional business attire inside a modern office."
+      expected_attributes:
+        clothing: [suit, blazer, shirt, tie, dress shirt, formal]
+        scene: [office, indoor]
+        style: [formal, professional, business]
+    - id: complex_semantic
+      query: "Someone wearing a blue shirt sitting on a park bench."
+      expected_attributes:
+        colors: [blue]
+        clothing: [shirt, top]
+        scene: [park, outdoor, bench]
+    - id: style_inference
+      query: "Casual weekend outfit for a city walk."
+      expected_attributes:
+        clothing: [jeans, t-shirt, hoodie, sweater, sneakers]
+        scene: [street, urban, city, outdoor]
+        style: [casual, weekend]
+    - id: compositional
+      query: "A red tie and a white shirt in a formal setting."
+      expected_attributes:
+        colors: [red, white]
+        clothing: [tie, shirt]
+        style: [formal]
+        scene: [office, indoor, formal]
