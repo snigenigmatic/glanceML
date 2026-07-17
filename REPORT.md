@@ -43,22 +43,22 @@ Query → attribute parse + FashionSigLIP text embed
 
 ### Shortcomings (acknowledged)
 
-- Florence-2 captions can miss rare garments; we merge Fashionpedia seed labels at index time as backup.
+- Florence-2 captions can miss rare garments; PEDES seed captions help on clothing language, COCO object tags help on scene.
 - Fusion weights (0.7/0.3) are heuristic; should be tuned on a labeled relevance set.
 - Attribute parser is keyword-based (explicit, debuggable) but not open-vocabulary for novel slang.
-- Dataset scene labels from Fashionpedia are weak; VLM scene extraction is doing the heavy lifting for environment.
+- Pair/composition rerank can over-penalize when metadata is noisy (see hybrid_rerank vs hybrid below).
 
 ## 3. Dataset
 
-- Source: **Fashionpedia** via Hugging Face `detection-datasets/fashionpedia`.
-- Sampled **~800 images**, resized to 512px, balanced across coarse clothing buckets.
-- Axes covered: clothing types (annotations + caption parse), colors (**from Florence captions + color–garment pairs**), environments (VLM + soft priors).
+- Source: **mixed corpus** — 500 CUHK-PEDES (attribute-rich person captions) + 300 COCO person images with scene cues (park / street / home / office).
+- **800 images**, resized to 512px with letterbox padding.
+- Axes covered: clothing/color language from PEDES + Florence captions; environments from COCO object cues + VLM scene tags.
 - Open-vocab detection dumps were removed — they tagged ~16 garments on every image and made metadata scoring meaningless.
-- Artifacts: `metadata.json` (seed labels), `index_meta.json` (VLM-enriched), Chroma persistence.
+- Artifacts: `metadata.json` (seed labels), `index_meta.json` (VLM-enriched), Chroma persistence on Modal volume `glance-fashion-data`.
 
 ## 3b. Evaluation (what is graded)
 
-Primary metrics: **Precision@K / Recall@K / AP@K** against hand labels in `configs/relevance_labels.json`.
+Primary metrics: **Precision@K / Recall@K / AP@K** against hand labels in `configs/relevance_labels.json` (mixed-corpus `pedes_*` / `coco_*` IDs).
 
 Compared systems:
 1. Vanilla CLIP baseline (`openai/clip-vit-base-patch32`)
@@ -68,20 +68,20 @@ Compared systems:
 
 Attribute Coverage@K is a **diagnostic only** (self-grading against system metadata). Do not use it as the main claim.
 
-### Measured results (800-image subset, hand labels)
+### Measured results (800-image mixed corpus, hand labels)
 
 | System | P@1 | P@5 | R@5 | AP@5 |
 | --- | --- | --- | --- | --- |
-| CLIP baseline | 0.00 | 0.16 | 0.28 | 0.10 |
-| FashionSigLIP dense-only | 0.00 | 0.16 | 0.34 | 0.14 |
-| Hybrid | **0.60** | **0.28** | **0.43** | 0.41 |
-| Hybrid + rerank | **0.60** | **0.28** | **0.43** | **0.43** |
+| CLIP baseline | 0.80 | 0.20 | 0.14 | 0.18 |
+| FashionSigLIP dense-only | 0.40 | 0.44 | 0.48 | 0.42 |
+| Hybrid | **0.80** | **0.48** | 0.45 | **0.54** |
+| Hybrid + rerank | **0.80** | 0.44 | 0.26 | 0.44 |
 
 Takeaways:
-- Hybrid clearly beats vanilla CLIP on Precision@1 / AP@5 — this is the assignment claim.
-- Compositional query q5 ranks a true red-tie+white-shirt match above black-tie hard negatives.
-- q1 (bright yellow raincoat) remains hard: the corpus has few literal yellow raincoats; dense/hybrid still under-recall there.
-- Rerank helps AP slightly; it does not invent relevance the dense stage never retrieved.
+- Hybrid beats vanilla CLIP on P@5 / R@5 / AP@5 (0.48 / 0.45 / 0.54 vs 0.20 / 0.14 / 0.18) — the assignment claim.
+- q4 (casual city walk) is where metadata fusion helps most: hybrid P@5=1.00 vs CLIP 0.20.
+- Compositional q5: hybrid/dense retrieve the true white-blouse+red-tie match (`coco_3008`) at rank 2 and ahead of hard negatives; CLIP misses it in top-10. Pair rerank currently hurts this query.
+- q1 still under-recalls: no literal yellow raincoat; hi-vis yellow vests are the closest proxies.
 
 ## 4. Scalability to 1M images
 

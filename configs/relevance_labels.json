@@ -60,6 +60,14 @@
       "id": "q4_style",
       "query": "Casual weekend outfit for a city walk.",
       "relevant": [
+        "pedes_000660",
+        "pedes_000648",
+        "pedes_000654",
+        "pedes_000667",
+        "pedes_001418",
+        "pedes_001417",
+        "pedes_000359",
+        "coco_1006",
         "pedes_001026",
         "pedes_000150",
         "pedes_000102",
@@ -73,7 +81,7 @@
         "pedes_001290",
         "pedes_001006"
       ],
-      "label_notes": "Relevant = casual street / jeans / hoodie / sneakers city-walk looks. Hard negatives = formal suit+tie."
+      "label_notes": "Relevant = casual street / jeans / hoodie / t-shirt / sneakers city-walk looks (including near-duplicate PEDES street crops). Hard negatives = formal suit+tie."
     },
     {
       "id": "q5_compositional",
