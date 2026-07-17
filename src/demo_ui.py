@@ -50,9 +50,15 @@ def build_demo(retriever: FashionRetriever, data_root: Path) -> gr.Blocks:
             query = gr.Textbox(label="Query", lines=2, placeholder="Describe outfit + place + vibe…")
             top_k = gr.Slider(1, 12, value=5, step=1, label="Top-K")
         btn = gr.Button("Search", variant="primary")
-        gallery = gr.Gallery(label="Results", columns=3, height=480)
+        gallery = gr.Gallery(
+            label="Results",
+            columns=3,
+            height=480,
+            object_fit="contain",
+            preview=True,
+        )
         details = gr.Textbox(label="Scores & matched attributes", lines=16)
-        gr.Examples(EXAMPLE_QUERIES, inputs=query)
+        gr.Examples(EXAMPLE_QUERIES, inputs=[query])
         btn.click(run, inputs=[query, top_k], outputs=[gallery, details])
         query.submit(run, inputs=[query, top_k], outputs=[gallery, details])
     return demo

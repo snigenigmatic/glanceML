@@ -11,7 +11,9 @@ datasets>=3.0.0
 pillow>=10.0.0
 pyyaml>=6.0
 tqdm>=4.66.0
-gradio>=4.44.0
+gradio==4.44.1
+pydantic==2.10.6
+fastapi==0.115.6
 numpy>=1.26.0
 sentencepiece>=0.2.0
 protobuf>=4.25.0

@@ -48,7 +48,11 @@ ml_image = (
         "pillow==10.4.0",
         "pyyaml==6.0.2",
         "tqdm==4.66.5",
-        "gradio==4.44.0",
+        # Gradio 4.44 + pydantic>=2.11 crashes get_api_info() with:
+        # TypeError: argument of type 'bool' is not iterable
+        "gradio==4.44.1",
+        "pydantic==2.10.6",
+        "fastapi==0.115.6",
         "numpy==1.26.4",
         "sentencepiece==0.2.0",
         "protobuf==4.25.5",
@@ -190,15 +194,26 @@ def demo():
     sys.path.insert(0, "/root")
     import gradio as gr
     from fastapi import FastAPI
+    from gradio.routes import mount_gradio_app
 
     cfg_path = _write_runtime_config()
+    chroma_dir = DATA_ROOT / "chroma"
+    if not chroma_dir.exists() or not any(chroma_dir.iterdir()):
+        raise RuntimeError(
+            "No index found on volume. Run first:\n"
+            "  modal run modal_app.py::prepare_dataset\n"
+            "  modal run modal_app.py::build_index"
+        )
+
     from src.demo_ui import build_demo
     from src.retriever.hybrid import FashionRetriever
 
     retriever = FashionRetriever(config_path=str(cfg_path), data_dir=str(DATA_ROOT))
     blocks = build_demo(retriever, DATA_ROOT)
+    # queue() is required for Modal/ASGI Gradio apps under load
+    blocks.queue(default_concurrency_limit=2)
     api = FastAPI()
-    return gr.mount_gradio_app(api, blocks, path="/")
+    return mount_gradio_app(app=api, blocks=blocks, path="/")
 
 
 @app.local_entrypoint()
