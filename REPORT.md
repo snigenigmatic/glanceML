@@ -1,5 +1,16 @@
 # Multimodal Fashion & Context Retrieval — Technical Report
 
+**Assignment submission PDF source.** Maps to deliverables: (1) Approaches, (2) Chosen architecture, (3) Codebase link, (4) Future work. Also covers modularity, scalability to 1M images, and zero-shot behavior.
+
+## Codebase (GitHub)
+
+- Repository: https://github.com/snigenigmatic/glanceML  
+- Feature branch with this system: `cursor/fashion-retrieval-modal-5bcc`  
+- Indexing pipeline: `src/indexer/` (+ `modal_app.py::build_index`)  
+- Retrieval pipeline: `src/retriever/` (+ `modal_app.py::query` / Gradio demo)  
+- Evaluation: `src/eval/evaluate.py`, labels in `configs/relevance_labels.json`  
+- Reproducibility: see `README.md` (`modal run modal_app.py --stage …`)
+
 ## 1. Approaches considered
 
 | Approach | Idea | Strengths | Weaknesses | When it fits |
