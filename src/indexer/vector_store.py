@@ -2,18 +2,22 @@
 
 from __future__ import annotations
 
+import logging
+import os
 from pathlib import Path
 from typing import Any, Sequence
+
+# Must be set before chromadb import — broken posthog stubs spam ERROR logs.
+os.environ["ANONYMIZED_TELEMETRY"] = "False"
+os.environ["CHROMA_TELEMETRY_IMPL"] = "none"
 
 import chromadb
 from chromadb.config import Settings
 
+logging.getLogger("chromadb.telemetry.product.posthog").setLevel(logging.CRITICAL)
+
 
 def get_client(persist_dir: str | Path) -> chromadb.ClientAPI:
-    import os
-
-    # Chroma's posthog telemetry can error on some versions; disable it.
-    os.environ.setdefault("ANONYMIZED_TELEMETRY", "False")
     persist_dir = Path(persist_dir)
     persist_dir.mkdir(parents=True, exist_ok=True)
     return chromadb.PersistentClient(

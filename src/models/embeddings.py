@@ -13,6 +13,7 @@ class EmbeddingModel:
     """Thin wrapper around HF multimodal embedding models."""
 
     def __init__(self, model_id: str, device: str | None = None):
+        import logging
         import warnings
 
         from transformers import AutoModel, AutoProcessor
@@ -21,8 +22,10 @@ class EmbeddingModel:
             device = "cuda" if torch.cuda.is_available() else "cpu"
         self.device = device
         self.model_id = model_id
-        # FashionSigLIP wraps open_clip; HF emits a harmless model_type mismatch warning.
+        # FashionSigLIP wraps open_clip; HF/open_clip emit harmless load-time warnings.
+        logging.getLogger("transformers.modeling_utils").setLevel(logging.ERROR)
         with warnings.catch_warnings():
+            warnings.filterwarnings("ignore", category=FutureWarning)
             warnings.filterwarnings("ignore", message=".*model of type siglip.*")
             warnings.filterwarnings("ignore", message=".*weights_only=False.*")
             self.processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)

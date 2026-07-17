@@ -44,6 +44,7 @@ ml_image = (
         "einops==0.8.0",
         "open_clip_torch==2.26.1",
         "chromadb==0.5.5",
+        "posthog==3.5.0",  # chromadb 0.5.x breaks with newer posthog capture() API
         "datasets==3.0.1",
         "pillow==10.4.0",
         "pyyaml==6.0.2",
