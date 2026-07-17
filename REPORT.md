@@ -52,8 +52,21 @@ Query → attribute parse + FashionSigLIP text embed
 
 - Source: **Fashionpedia** via Hugging Face `detection-datasets/fashionpedia`.
 - Sampled **~800 images**, resized to 512px, balanced across coarse clothing buckets.
-- Axes covered: clothing types (from annotations), colors (annotations + VLM), environments (VLM + soft priors for office/park/street/home).
+- Axes covered: clothing types (annotations + caption parse), colors (**from Florence captions + color–garment pairs**), environments (VLM + soft priors).
+- Open-vocab detection dumps were removed — they tagged ~16 garments on every image and made metadata scoring meaningless.
 - Artifacts: `metadata.json` (seed labels), `index_meta.json` (VLM-enriched), Chroma persistence.
+
+## 3b. Evaluation (what is graded)
+
+Primary metrics: **Precision@K / Recall@K / AP@K** against hand labels in `configs/relevance_labels.json`.
+
+Compared systems:
+1. Vanilla CLIP baseline (`openai/clip-vit-base-patch32`)
+2. FashionSigLIP dense-only
+3. Hybrid (dense + metadata)
+4. Hybrid + composition / pair rerank
+
+Attribute Coverage@K is a **diagnostic only** (self-grading against system metadata). Do not use it as the main claim.
 
 ## 4. Scalability to 1M images
 

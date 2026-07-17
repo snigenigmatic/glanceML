@@ -7,20 +7,18 @@ import re
 import torch
 from PIL import Image
 
-from src.attributes import FashionAttributes, parse_attributes
+from src.attributes import FashionAttributes, parse_caption_attributes
 
 
 class Florence2Extractor:
     """Uses Florence-2 detailed captions, then parses fashion attributes.
 
-    Florence-2 is task-token based (not free-form chat). We run
-    MORE_DETAILED_CAPTION and optionally OPEN_VOCABULARY_DETECTION for
-    garment phrases, then map text → structured attributes.
+    Caption-only parsing (no open-vocabulary detection dump). Open-vocab
+    detection previously tagged ~16 garments on every image and destroyed
+    metadata discriminativeness.
     """
 
     TASK = "<MORE_DETAILED_CAPTION>"
-    DETECT_TASK = "<OPEN_VOCABULARY_DETECTION>"
-    DETECT_PROMPTS = "shirt, t-shirt, blouse, dress, jacket, coat, raincoat, blazer, suit, hoodie, jeans, pants, skirt, tie, sneakers, boots"
 
     def __init__(self, model_id: str = "microsoft/Florence-2-base", device: str | None = None):
         from transformers import AutoModelForCausalLM, AutoProcessor
@@ -40,9 +38,8 @@ class Florence2Extractor:
         self.model.to(self.device)
 
     @torch.inference_mode()
-    def _run_task(self, image: Image.Image, task: str, text_input: str | None = None) -> str:
-        prompt = task if text_input is None else task + text_input
-        inputs = self.processor(text=prompt, images=image, return_tensors="pt")
+    def _run_task(self, image: Image.Image, task: str) -> str:
+        inputs = self.processor(text=task, images=image, return_tensors="pt")
         inputs = {
             k: (v.to(self.device) if hasattr(v, "to") else v) for k, v in inputs.items()
         }
@@ -64,25 +61,14 @@ class Florence2Extractor:
         )
         result = parsed.get(task, parsed)
         if isinstance(result, dict):
-            # open-vocab detection returns labels/bboxes
-            labels = result.get("labels") or result.get("bboxes_labels") or []
-            if labels:
-                return ", ".join(str(x) for x in labels)
             return str(result)
         return str(result)
 
-    def extract(self, image: Image.Image) -> FashionAttributes:
+    def extract(self, image: Image.Image, seed_text: str = "") -> FashionAttributes:
         image = image.convert("RGB")
-        caption = self._run_task(image, self.TASK)
-        detect_text = ""
-        try:
-            detect_text = self._run_task(image, self.DETECT_TASK, self.DETECT_PROMPTS)
-        except Exception:
-            detect_text = ""
-
-        combined = f"{caption}. {detect_text}".strip()
-        attrs = parse_attributes(combined)
-        attrs.caption = _clean_caption(caption)
+        caption = _clean_caption(self._run_task(image, self.TASK))
+        attrs = parse_caption_attributes(caption, seed_text=seed_text)
+        attrs.caption = caption
         return attrs
 
 
@@ -96,4 +82,4 @@ class HeuristicExtractor:
     """CPU-only fallback when Florence-2 weights are unavailable."""
 
     def extract(self, image: Image.Image, seed_text: str = "") -> FashionAttributes:
-        return parse_attributes(seed_text)
+        return parse_caption_attributes(seed_text, seed_text=seed_text)

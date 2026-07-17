@@ -1,0 +1,40 @@
+{
+  "_notes": "Hand-labeled relevance for the five assignment judge queries against the 800-image Fashionpedia subset. Labels were assigned by inspecting Florence captions and verifying key images visually. relevant = acceptable top results; hard_negatives = near-misses that should rank below true matches (color/garment swaps or missing key attributes).",
+  "queries": [
+    {
+      "id": "q1_attribute",
+      "query": "A person in a bright yellow raincoat.",
+      "relevant": ["404", "6935", "189", "7943"],
+      "hard_negatives": ["898", "4177"],
+      "label_notes": "No literal bright-yellow raincoat in corpus. Relevant = bright yellow / yellow-green outerwear (coat/jacket). Hard negatives = raincoats that are blue or green (right garment family, wrong color)."
+    },
+    {
+      "id": "q2_contextual",
+      "query": "Professional business attire inside a modern office.",
+      "relevant": ["724", "706", "999", "984", "1204", "973"],
+      "hard_negatives": ["13189", "909"],
+      "label_notes": "Corpus has almost no true office interiors; relevant = formal/business suit attire (event/runway proxies). Hard negatives = casual street/hoodie looks."
+    },
+    {
+      "id": "q3_complex",
+      "query": "Someone wearing a blue shirt sitting on a park bench.",
+      "relevant": ["3482", "665"],
+      "hard_negatives": ["5398", "192", "909"],
+      "label_notes": "3482: blue t-shirt in park. 665: blue blouse in park. Hard negatives: park/bench without blue shirt, or blue shirt on city street."
+    },
+    {
+      "id": "q4_style",
+      "query": "Casual weekend outfit for a city walk.",
+      "relevant": ["909", "2098", "8792", "3661", "13189"],
+      "hard_negatives": ["724", "1204", "901"],
+      "label_notes": "Relevant = casual street / jeans / hoodie / city walk looks. Hard negatives = formal suit+tie."
+    },
+    {
+      "id": "q5_compositional",
+      "query": "A red tie and a white shirt in a formal setting.",
+      "relevant": ["1204", "901"],
+      "hard_negatives": ["724", "1081", "973", "706"],
+      "label_notes": "Relevant requires BOTH white shirt AND red/maroon tie. Hard negatives = white shirt with black/non-red tie (compositional swap / missing red binding)."
+    }
+  ]
+}

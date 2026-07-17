@@ -71,7 +71,9 @@ pytest tests/
 
 Full Fashionpedia + Florence-2 indexing is intended for Modal GPUs.
 
-## Evaluation prompts
+## Evaluation
+
+Judge prompts (hand-labeled in `configs/relevance_labels.json`):
 
 1. Attribute: *A person in a bright yellow raincoat.*
 2. Contextual: *Professional business attire inside a modern office.*
@@ -79,7 +81,20 @@ Full Fashionpedia + Florence-2 indexing is intended for Modal GPUs.
 4. Style: *Casual weekend outfit for a city walk.*
 5. Compositional: *A red tie and a white shirt in a formal setting.*
 
-Metrics in `src/eval/evaluate.py` report **attribute Coverage@1 / @5** (proxy for relevance without hand labels) across dense-only vs hybrid vs hybrid+rerank.
+Primary metrics are **Precision@K / Recall@K / AP@K** against those labels, comparing:
+
+- vanilla **CLIP baseline**
+- FashionSigLIP dense-only
+- hybrid
+- hybrid + composition rerank
+
+```bash
+modal run modal_app.py::repair_metadata      # clean caption→attribute metadata
+modal run modal_app.py::build_clip_baseline  # CLIP corpus embeddings
+modal run modal_app.py::evaluate
+```
+
+Attribute Coverage@K is kept only as a diagnostic (it can self-grade); do not use it as the main claim.
 
 ## Design rationale (short)
 

@@ -30,4 +30,5 @@ retrieval:
 
 eval:
   queries_path: configs/eval_queries.json
+  relevance_labels_path: configs/relevance_labels.json
   output_dir: eval/results

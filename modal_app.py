@@ -135,6 +135,45 @@ def build_index(use_vlm: bool = True, max_items: int | None = None):
 @app.function(
     image=ml_image,
     volumes={str(DATA_ROOT): volume},
+    timeout=60 * 20,
+    memory=8192,
+)
+def repair_metadata():
+    """Reparse captions into clean color/clothing/pair metadata (no re-embed)."""
+    import sys
+
+    sys.path.insert(0, "/root")
+    cfg_path = _write_runtime_config()
+    from src.indexer.repair_metadata import repair_metadata as _repair
+
+    path = _repair(config_path=str(cfg_path), data_dir=str(DATA_ROOT))
+    volume.commit()
+    return str(path)
+
+
+@app.function(
+    image=ml_image,
+    volumes={str(DATA_ROOT): volume},
+    gpu="A10G",
+    timeout=60 * 60,
+    memory=16384,
+)
+def build_clip_baseline():
+    """Embed the corpus with vanilla CLIP for the assignment baseline table."""
+    import sys
+
+    sys.path.insert(0, "/root")
+    cfg_path = _write_runtime_config()
+    from src.eval.clip_baseline import build_clip_index
+
+    path = build_clip_index(config_path=str(cfg_path), data_dir=str(DATA_ROOT))
+    volume.commit()
+    return str(path)
+
+
+@app.function(
+    image=ml_image,
+    volumes={str(DATA_ROOT): volume},
     gpu="A10G",
     timeout=60 * 15,
     memory=16384,
@@ -160,11 +199,11 @@ def query(query_text: str, top_k: int = 5) -> list[dict]:
     image=ml_image,
     volumes={str(DATA_ROOT): volume},
     gpu="A10G",
-    timeout=60 * 30,
+    timeout=60 * 45,
     memory=16384,
 )
 def evaluate(top_k: int = 5) -> dict:
-    """Run ablation (dense / hybrid / hybrid+rerank) on assignment prompts."""
+    """Hand-labeled Precision/Recall + CLIP baseline ablations."""
     import sys
 
     sys.path.insert(0, "/root")
@@ -243,6 +282,7 @@ def main(
     """
     One-shot orchestration from your laptop:
       modal run modal_app.py --stage all
+      modal run modal_app.py --stage eval
       modal run modal_app.py --stage query --query-text "Casual weekend outfit for a city walk."
     """
     if stage in {"prepare", "all"}:
@@ -251,6 +291,12 @@ def main(
     if stage in {"index", "all"}:
         print("→ build_index")
         print(build_index.remote())
+    if stage in {"repair", "eval_prep", "all"}:
+        print("→ repair_metadata")
+        print(repair_metadata.remote())
+    if stage in {"clip", "eval_prep", "all"}:
+        print("→ build_clip_baseline")
+        print(build_clip_baseline.remote())
     if stage in {"eval", "all"}:
         print("→ evaluate")
         print(evaluate.remote(top_k=top_k))

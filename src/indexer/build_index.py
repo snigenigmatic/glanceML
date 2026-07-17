@@ -8,7 +8,7 @@ from typing import Any
 from PIL import Image
 from tqdm import tqdm
 
-from src.attributes import FashionAttributes, parse_attributes
+from src.attributes import FashionAttributes
 from src.indexer.vector_store import get_client, get_or_create_collection, upsert_records
 from src.models.embeddings import load_fashion_siglip
 from src.models.vlm import Florence2Extractor, HeuristicExtractor
@@ -25,6 +25,7 @@ def _flatten_metadata(image_id: str, path: str, attrs: FashionAttributes, bucket
         "clothing": ",".join(attrs.clothing),
         "scenes": ",".join(attrs.scenes),
         "styles": ",".join(attrs.styles),
+        "pairs": ",".join(f"{c}:{g}" for c, g in attrs.pairs),
         "bucket_color": buckets.get("color", "unknown"),
         "bucket_clothing": buckets.get("clothing", "unknown"),
         "bucket_scene": buckets.get("scene", "unknown"),
@@ -94,18 +95,7 @@ def build_index(
             img_path = data_root / item["path"]
             image = Image.open(img_path).convert("RGB")
             images.append(image)
-            if isinstance(extractor, Florence2Extractor):
-                attrs = extractor.extract(image)
-            else:
-                attrs = extractor.extract(image, seed_text=item.get("seed_text", ""))
-            # Merge seed Fashionpedia labels for clothing/color recall
-            seed_attrs = parse_attributes(item.get("seed_text", ""))
-            for field_name in ("colors", "clothing", "styles"):
-                merged = list(getattr(attrs, field_name))
-                for v in getattr(seed_attrs, field_name):
-                    if v not in merged:
-                        merged.append(v)
-                setattr(attrs, field_name, merged)
+            attrs = extractor.extract(image, seed_text=item.get("seed_text", ""))
             # Prefer VLM scene; else seed bucket scene
             if not attrs.scenes:
                 scene = item.get("buckets", {}).get("scene")

@@ -68,12 +68,18 @@ class FashionRetriever:
 
         candidates: list[RetrievalResult] = []
         for image_id, dist, md, doc in zip(ids, distances, metadatas, documents):
+            pairs = []
+            for p in _meta_list(md.get("pairs")):
+                if ":" in p:
+                    c, g = p.split(":", 1)
+                    pairs.append((c, g))
             doc_attrs = FashionAttributes(
                 colors=_meta_list(md.get("colors")),
                 clothing=_meta_list(md.get("clothing")),
                 scenes=_meta_list(md.get("scenes")),
                 styles=_meta_list(md.get("styles")),
                 caption=md.get("caption") or doc or "",
+                pairs=pairs,
             )
             dense = _distance_to_similarity(dist)
             meta_score = metadata_match_score(query_attrs, doc_attrs)
