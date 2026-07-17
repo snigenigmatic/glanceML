@@ -216,3 +216,17 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project artifacts
+data/images/
+data/raw/
+data/chroma/
+data/metadata.json
+data/index_meta.json
+eval/results/
+*.pt
+*.bin
+.cache/
+.huggingface/
+outputs/
+artifacts/

@@ -1,60 +1,28 @@
-# REPORT_NOTES.md
+# Literature / decision scratchpad
 
-# Literature Review
+## Why vanilla CLIP fails
 
-## Why Vanilla CLIP Fails
+- Global embeddings mix attributes without binding
+- Weak fine-grained fashion color/garment discrimination
+- Scene + outfit composition often ignored
 
-Common issues:
-- Weak compositional reasoning
-- Global embeddings
-- Fine-grained attribute confusion
+## Approaches considered
 
-## Approaches Considered
+1. Vanilla CLIP / SigLIP
+2. FashionCLIP
+3. FashionSigLIP (chosen dense backbone)
+4. Caption-only text retrieval
+5. Hybrid dense + structured metadata (chosen system)
+6. Heavy VLM reranking (deferred to future work)
 
-1. Vanilla CLIP
-2. SigLIP2
-3. FashionSigLIP
-4. Hybrid retrieval
-5. VLM reranking
+## Chosen stack
 
-## Chosen Approach
+FashionSigLIP + Florence-2 + Chroma + hybrid fusion + composition rerank
 
-FashionSigLIP
-+
-Florence-2
-+
-Hybrid Retrieval
-+
-Lightweight Reranker
+See `REPORT.md` for the full write-up suitable for PDF export.
 
 ## Evaluation
 
-Metrics:
-- Precision@1
-- Precision@5
-- Recall@5
-
-Baselines:
-- CLIP
-- FashionSigLIP
-- Hybrid
-- Hybrid + Reranking
-
-## Report Figures
-
-- System architecture
-- Retrieval pipeline
-- Ablation table
-- Precision comparison
-- Qualitative retrieval grids
-
-## Future Work
-
-- Larger datasets
-- Better rerankers
-- Region-level embeddings
-- Online feedback learning
-
-## References
-
-Keep all paper citations and benchmark values here instead of PLAN.md.
+- Official prompts in `configs/eval_queries.json`
+- Proxy metric: attribute Coverage@K
+- Ablations: dense_only / hybrid / hybrid_rerank via `modal run modal_app.py::evaluate`
