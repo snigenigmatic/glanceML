@@ -10,11 +10,15 @@ from chromadb.config import Settings
 
 
 def get_client(persist_dir: str | Path) -> chromadb.ClientAPI:
+    import os
+
+    # Chroma's posthog telemetry can error on some versions; disable it.
+    os.environ.setdefault("ANONYMIZED_TELEMETRY", "False")
     persist_dir = Path(persist_dir)
     persist_dir.mkdir(parents=True, exist_ok=True)
     return chromadb.PersistentClient(
         path=str(persist_dir),
-        settings=Settings(anonymized_telemetry=False),
+        settings=Settings(anonymized_telemetry=False, allow_reset=True),
     )
 
 

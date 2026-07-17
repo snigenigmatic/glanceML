@@ -13,14 +13,20 @@ class EmbeddingModel:
     """Thin wrapper around HF multimodal embedding models."""
 
     def __init__(self, model_id: str, device: str | None = None):
+        import warnings
+
         from transformers import AutoModel, AutoProcessor
 
         if device is None:
             device = "cuda" if torch.cuda.is_available() else "cpu"
         self.device = device
         self.model_id = model_id
-        self.processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
-        self.model = AutoModel.from_pretrained(model_id, trust_remote_code=True)
+        # FashionSigLIP wraps open_clip; HF emits a harmless model_type mismatch warning.
+        with warnings.catch_warnings():
+            warnings.filterwarnings("ignore", message=".*model of type siglip.*")
+            warnings.filterwarnings("ignore", message=".*weights_only=False.*")
+            self.processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
+            self.model = AutoModel.from_pretrained(model_id, trust_remote_code=True)
         self.model.eval()
         self.model.to(self.device)
 

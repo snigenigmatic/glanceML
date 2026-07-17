@@ -185,14 +185,32 @@ def evaluate(top_k: int = 5) -> dict:
     gpu="A10G",
     timeout=60 * 60,
     memory=16384,
+    # Gradio queue sessions are in-memory and require sticky routing.
+    # Keep a single container and multiplex requests with @modal.concurrent.
+    max_containers=1,
+    scaledown_window=60 * 15,
 )
+@modal.concurrent(max_inputs=64)
 @modal.asgi_app()
 def demo():
     """Gradio ASGI app for interactive retrieval."""
+    import os
     import sys
+    import warnings
+
+    # Noise from third-party libs (not failures)
+    os.environ.setdefault("ANONYMIZED_TELEMETRY", "False")
+    os.environ.setdefault("CHROMA_TELEMETRY", "False")
+    warnings.filterwarnings(
+        "ignore",
+        message="You are using `torch.load` with `weights_only=False`",
+    )
+    warnings.filterwarnings(
+        "ignore",
+        message="You are using a model of type siglip to instantiate a model of type",
+    )
 
     sys.path.insert(0, "/root")
-    import gradio as gr
     from fastapi import FastAPI
     from gradio.routes import mount_gradio_app
 
@@ -210,10 +228,8 @@ def demo():
 
     retriever = FashionRetriever(config_path=str(cfg_path), data_dir=str(DATA_ROOT))
     blocks = build_demo(retriever, DATA_ROOT)
-    # queue() is required for Modal/ASGI Gradio apps under load
-    blocks.queue(default_concurrency_limit=2)
-    api = FastAPI()
-    return mount_gradio_app(app=api, blocks=blocks, path="/")
+    blocks.queue(default_concurrency_limit=16)
+    return mount_gradio_app(app=FastAPI(), blocks=blocks, path="/")
 
 
 @app.local_entrypoint()

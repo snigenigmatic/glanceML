@@ -39,13 +39,15 @@ modal run modal_app.py::build_index
 modal run modal_app.py::evaluate
 modal run modal_app.py::query --query-text "A person in a bright yellow raincoat." --top-k 5
 
-# Interactive Gradio demo
+# Interactive Gradio demo (ephemeral URL while this process runs)
 modal serve modal_app.py
 # Deploy persistently:
 modal deploy modal_app.py
 ```
 
 Data and the Chroma index live on the Modal volume `glance-fashion-data` (`/data`).
+
+The Gradio demo is pinned to **one container** (`max_containers=1`) with concurrent inputs so Gradio’s in-memory queue sessions stay sticky (avoids `404: Session not found`).
 
 ### GPU notes
 
